@@ -30,6 +30,17 @@
             android:layout_height="match_parent"
             android:background="#88000000" />
 
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/vectorbackarrowwhite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
 
         <TextView
             android:id="@+id/tvTitle"
@@ -41,7 +52,8 @@
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="60sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:paddingLeft="40dp"/>
     </FrameLayout>
 
 

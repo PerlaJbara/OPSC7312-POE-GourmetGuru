@@ -1,14 +1,19 @@
 package com.opsc7311poe.gourmetguru_opscpoe
 
 import android.os.Bundle
+import android.util.Log
+import android.view.HapticFeedbackConstants
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 
 
 class LebaneseFragment : Fragment() {
 
+    private lateinit var btnBack: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,8 +27,20 @@ class LebaneseFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_lebanese, container, false)
+        val view = inflater.inflate(R.layout.fragment_lebanese, container, false)
+
+        btnBack = view.findViewById(R.id.btnBack)
+
+        btnBack.setOnClickListener {
+            replaceFragment(HomeFragment())
+        }
+
+        return view
     }
 
-
+    private fun replaceFragment(fragment: Fragment) {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.frame_container, fragment)
+            .commit()
+    }
 }
