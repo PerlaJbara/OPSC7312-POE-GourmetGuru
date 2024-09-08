@@ -53,6 +53,59 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/vectorbackarrowwhite"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/txtMainDay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:fontFamily="@font/lora"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:textSize="35dp"
+            android:text="Monday" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:paddingLeft="25dp">
+
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="15dp"
+                android:src="@drawable/vectorsearch"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/txtName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="45dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="60dp"
+                android:background="@drawable/txt_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ScrollView
@@ -65,109 +118,66 @@
                 android:orientation="vertical" >
 
                 <TextView
-                    android:id="@+id/txtMon"
+                    android:id="@+id/brek1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Monday"
+                    android:text="Breakfast 1"
                     android:layout_marginHorizontal="25dp"
-                    android:layout_marginVertical="10dp"
+                    android:layout_marginVertical="5dp"
                     android:textColor="@android:color/white"
                     android:fontFamily="@font/lora"
                     android:textStyle="bold"
-                    android:textSize="24dp" />
+                    android:textSize="18dp" />
 
                 <TextView
-                    android:id="@+id/txtTues"
+                    android:id="@+id/txtbrek2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tuesday"
+                    android:text="Breakfast 2"
                     android:layout_marginHorizontal="25dp"
-                    android:layout_marginVertical="10dp"
+                    android:layout_marginVertical="5dp"
                     android:textColor="@android:color/white"
                     android:fontFamily="@font/lora"
                     android:textStyle="bold"
-                    android:textSize="24dp" />
+                    android:textSize="18dp" />
 
                 <TextView
-                    android:id="@+id/txtWed"
+                    android:id="@+id/txtbrek3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Wednesday"
+                    android:text="Breakfast 3"
                     android:layout_marginHorizontal="25dp"
-                    android:layout_marginVertical="10dp"
+                    android:layout_marginVertical="5dp"
                     android:textColor="@android:color/white"
                     android:fontFamily="@font/lora"
                     android:textStyle="bold"
-                    android:textSize="24dp" />
+                    android:textSize="18dp" />
 
                 <TextView
-                    android:id="@+id/txtThur"
+                    android:id="@+id/txtbrek4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Thursday"
+                    android:text="Breakfast 4"
                     android:layout_marginHorizontal="25dp"
-                    android:layout_marginVertical="10dp"
+                    android:layout_marginVertical="5dp"
                     android:textColor="@android:color/white"
                     android:fontFamily="@font/lora"
                     android:textStyle="bold"
-                    android:textSize="24dp" />
+                    android:textSize="18dp" />
 
-                <TextView
-                    android:id="@+id/txtFri"
+                <Button
+                    android:id="@+id/btnSave"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Friday"
-                    android:layout_marginHorizontal="25dp"
-                    android:layout_marginVertical="10dp"
-                    android:textColor="@android:color/white"
+                    android:paddingVertical="10dp"
+                    android:text="Save"
                     android:fontFamily="@font/lora"
+                    android:textSize="20dp"
                     android:textStyle="bold"
-                    android:textSize="24dp" />
+                    android:layout_marginTop="70dp"
+                    android:layout_marginHorizontal="120dp"
+                    android:backgroundTint="@color/black"/>
 
-                <TextView
-                    android:id="@+id/txtSat"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Saturday"
-                    android:layout_marginHorizontal="25dp"
-                    android:layout_marginVertical="10dp"
-                    android:textColor="@android:color/white"
-                    android:fontFamily="@font/lora"
-                    android:textStyle="bold"
-                    android:textSize="24dp" />
-
-                <TextView
-                    android:id="@+id/txtSun"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Sunday"
-                    android:layout_marginHorizontal="25dp"
-                    android:layout_marginVertical="10dp"
-                    android:textColor="@android:color/white"
-                    android:fontFamily="@font/lora"
-                    android:textStyle="bold"
-                    android:textSize="24dp" />
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:paddingTop="50dp">
-
-                    <TextView
-                        android:id="@+id/txtViewShopping"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="25dp"
-                        android:layout_marginVertical="10dp"
-                        android:fontFamily="@font/lora"
-                        android:text="Click to view your shopping list!"
-                        android:textColor="@android:color/white"
-                        android:textSize="12dp"
-                        android:textStyle="bold"
-                        tools:ignore="TextSizeCheck" />
-                </LinearLayout>
 
             </LinearLayout>
         </ScrollView>

@@ -53,7 +53,28 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/vectorbackarrowwhite"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/txtMainDay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:fontFamily="@font/lora"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:textSize="35dp"
+            android:text="Monday" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -65,10 +86,22 @@
                 android:orientation="vertical" >
 
                 <TextView
-                    android:id="@+id/txtMon"
+                    android:id="@+id/txtViewShopping"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="25dp"
+                    android:layout_marginVertical="10dp"
+                    android:fontFamily="@font/lora"
+                    android:text="Please choose your meals:"
+                    android:textColor="@android:color/white"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtBreak"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Monday"
+                    android:text="Breakfast"
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginVertical="10dp"
                     android:textColor="@android:color/white"
@@ -77,10 +110,10 @@
                     android:textSize="24dp" />
 
                 <TextView
-                    android:id="@+id/txtTues"
+                    android:id="@+id/txtLunch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tuesday"
+                    android:text="Lunch"
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginVertical="10dp"
                     android:textColor="@android:color/white"
@@ -89,10 +122,10 @@
                     android:textSize="24dp" />
 
                 <TextView
-                    android:id="@+id/txtWed"
+                    android:id="@+id/txtDinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Wednesday"
+                    android:text="Dinner"
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginVertical="10dp"
                     android:textColor="@android:color/white"
@@ -100,74 +133,6 @@
                     android:textStyle="bold"
                     android:textSize="24dp" />
 
-                <TextView
-                    android:id="@+id/txtThur"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Thursday"
-                    android:layout_marginHorizontal="25dp"
-                    android:layout_marginVertical="10dp"
-                    android:textColor="@android:color/white"
-                    android:fontFamily="@font/lora"
-                    android:textStyle="bold"
-                    android:textSize="24dp" />
-
-                <TextView
-                    android:id="@+id/txtFri"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Friday"
-                    android:layout_marginHorizontal="25dp"
-                    android:layout_marginVertical="10dp"
-                    android:textColor="@android:color/white"
-                    android:fontFamily="@font/lora"
-                    android:textStyle="bold"
-                    android:textSize="24dp" />
-
-                <TextView
-                    android:id="@+id/txtSat"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Saturday"
-                    android:layout_marginHorizontal="25dp"
-                    android:layout_marginVertical="10dp"
-                    android:textColor="@android:color/white"
-                    android:fontFamily="@font/lora"
-                    android:textStyle="bold"
-                    android:textSize="24dp" />
-
-                <TextView
-                    android:id="@+id/txtSun"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Sunday"
-                    android:layout_marginHorizontal="25dp"
-                    android:layout_marginVertical="10dp"
-                    android:textColor="@android:color/white"
-                    android:fontFamily="@font/lora"
-                    android:textStyle="bold"
-                    android:textSize="24dp" />
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:paddingTop="50dp">
-
-                    <TextView
-                        android:id="@+id/txtViewShopping"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="25dp"
-                        android:layout_marginVertical="10dp"
-                        android:fontFamily="@font/lora"
-                        android:text="Click to view your shopping list!"
-                        android:textColor="@android:color/white"
-                        android:textSize="12dp"
-                        android:textStyle="bold"
-                        tools:ignore="TextSizeCheck" />
-                </LinearLayout>
 
             </LinearLayout>
         </ScrollView>
