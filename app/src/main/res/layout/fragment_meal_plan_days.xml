@@ -94,7 +94,7 @@
                     android:fontFamily="@font/lora"
                     android:text="Please choose your meals:"
                     android:textColor="@android:color/white"
-                    android:textSize="12dp"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
 
                 <TextView
