@@ -15,7 +15,7 @@ class Splashscreen : AppCompatActivity() {
         setContentView(R.layout.activity_splashscreen)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, Login::class.java)
+            val intent = Intent(this,MainActivity::class.java) //Login
             startActivity(intent)
             finish()
         }, splashScreenTimeout)

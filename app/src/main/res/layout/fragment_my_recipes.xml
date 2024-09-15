@@ -76,6 +76,7 @@
                 android:orientation="vertical" >
 
                 <ImageView
+                    android:id="@+id/imgAddRecipes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="50dp"
@@ -99,6 +100,7 @@
                     android:orientation="vertical" >
 
                     <ImageView
+                        android:id="@+id/imgViewRecipes"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="50dp"
@@ -124,6 +126,7 @@
                     android:orientation="vertical" >
 
                     <ImageView
+                        android:id="@+id/imgAddCollections"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="50dp"
@@ -148,6 +151,7 @@
                     android:orientation="vertical" >
 
                     <ImageView
+                        android:id="@+id/imgCollections"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="50dp"
@@ -173,6 +177,7 @@
                     android:orientation="vertical" >
 
                     <ImageView
+                        android:id="@+id/imgRating"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="50dp"
@@ -197,14 +202,40 @@
                     android:orientation="vertical" >
 
 
+                    <ImageView
+                        android:id="@+id/imgTimer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="50dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/evenbiggerclock" />
+
                     <TextView
-                        android:id="@+id/txtSpace"
+                        android:id="@+id/txtTimer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="30dp"
                         android:layout_gravity="center_horizontal"
                         android:fontFamily="@font/lora"
-                        android:text=" "
+                        android:text="Timer"
+                        android:textColor="@android:color/white"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+
+                    <TextView
+                        android:id="@+id/txtSpacer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="@font/lora"
+                        android:text=""
+                        android:layout_marginTop="50dp"
                         android:textColor="@android:color/white"
                         android:textSize="20dp"
                         android:textStyle="bold" />
