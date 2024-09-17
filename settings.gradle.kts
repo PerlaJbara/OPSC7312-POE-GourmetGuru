@@ -6,6 +6,7 @@ pluginManagement {
     }
     plugins {
         id("androidx.navigation.safeargs.kotlin") version "2.5.3" // Use the appropriate version
+        id("com.google.gms.google-services")
     }
 }
 

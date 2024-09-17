@@ -1,7 +1,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    id("androidx.navigation.safeargs.kotlin") // Add this line
+    id("androidx.navigation.safeargs.kotlin")
+    id("com.google.gms.google-services") // Add this line
 }
 
 android {
@@ -51,6 +52,10 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation("androidx.navigation:navigation-fragment-ktx:2.8.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.8.0")
+    implementation ("com.google.android.gms:play-services-auth:19.0.0")
+    implementation(libs.firebase.auth.ktx)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.database.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
