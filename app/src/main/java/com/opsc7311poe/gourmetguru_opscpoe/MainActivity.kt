@@ -2,7 +2,6 @@ package com.opsc7311poe.gourmetguru_opscpoe
 
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -13,7 +12,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+
         setContentView(R.layout.activity_main)
 
         bottomNavView = findViewById(R.id.bottom_navigation)
@@ -28,7 +27,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.navMealPlan -> {
                     Log.d("MainActivity", "Meal Plan selected")
-                    replaceFragment(MealPlanFragment())
+                    replaceFragment(MealPlan())
                     true
                 }
                 R.id.navSearch -> {

@@ -1,7 +1,6 @@
 package com.opsc7311poe.gourmetguru_opscpoe
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
