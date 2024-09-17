@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "381636906301",
+    "firebase_url": "https://gourmetguru-23c0a-default-rtdb.firebaseio.com",
+    "project_id": "gourmetguru-23c0a",
+    "storage_bucket": "gourmetguru-23c0a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:381636906301:android:242028641086f2e82a8954",
+        "android_client_info": {
+          "package_name": "com.opsc7311poe.gourmetguru_opscpoe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "381636906301-rtmeb4afv74tk7lrlntak3651jc1e4c0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFiGkaoMbgBldPxvhCs8x-yR433n9hSqw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "381636906301-rtmeb4afv74tk7lrlntak3651jc1e4c0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
