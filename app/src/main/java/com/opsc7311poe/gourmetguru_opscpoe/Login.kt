@@ -38,12 +38,6 @@ class Login : AppCompatActivity() {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance()
 
-        // Initialize Google Sign-In
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-        googleSignInClient = GoogleSignIn.getClient(this, gso)
 
         // Initialize views
         txtREmail = findViewById(R.id.txtREmail)
@@ -74,6 +68,13 @@ class Login : AppCompatActivity() {
 
         // Set up Google SSO login button click
         txtLoginSSo.setOnClickListener {
+            // Initialize Google Sign-In
+            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
+            googleSignInClient = GoogleSignIn.getClient(this, gso)
+
             signInWithGoogle()
         }
 
