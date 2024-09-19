@@ -6,6 +6,15 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        getByName("debug") {
+            storeFile =
+                file("C:\\Users\\Perla Jbara\\AndroidStudioProjects\\GourmetGuruOPSCPOE\\release-key-2.jks")
+            storePassword = "snowqueen46*"
+            keyAlias = "releasekey"
+            keyPassword = "bloonstd6isawesomelol4321*"
+        }
+    }
     namespace = "com.opsc7311poe.gourmetguru_opscpoe"
     compileSdk = 34
 
