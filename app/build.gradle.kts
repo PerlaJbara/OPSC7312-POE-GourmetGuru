@@ -7,9 +7,9 @@ plugins {
 
 android {
     signingConfigs {
-        getByName("debug") {
+        create("release") {
             storeFile =
-                file("C:\\Users\\Perla Jbara\\AndroidStudioProjects\\GourmetGuruOPSCPOE\\release-key-2.jks")
+                file("release-key-2.jks")
             storePassword = "snowqueen46*"
             keyAlias = "releasekey"
             keyPassword = "bloonstd6isawesomelol4321*"
