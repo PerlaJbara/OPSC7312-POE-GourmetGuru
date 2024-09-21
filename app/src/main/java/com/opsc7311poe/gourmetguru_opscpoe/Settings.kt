@@ -14,6 +14,10 @@ import com.google.firebase.auth.FirebaseAuth
 class Settings : Fragment() {
 
     private lateinit var btnLogout: TextView
+    private lateinit var btnChangePassword: TextView
+    private lateinit var btnDeleteAccount: TextView
+    private lateinit var btnChangeLang: TextView
+    private lateinit var btnBack: TextView
     private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +35,7 @@ class Settings : Fragment() {
 
         auth = FirebaseAuth.getInstance()
         btnLogout = view.findViewById(R.id.txtlogout)
+
 
 
         btnLogout.setOnClickListener(){

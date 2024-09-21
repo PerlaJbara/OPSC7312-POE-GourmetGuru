@@ -13,6 +13,8 @@ class MyRecipesFragment : Fragment() {
 
     // Declare ImageView variables
     private lateinit var imgTimer: ImageView
+    private lateinit var imgAddRecipes: ImageView
+    private lateinit var imgViewRecipes: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +30,19 @@ class MyRecipesFragment : Fragment() {
         imgTimer.setOnClickListener {
             replaceFragment(TimerFragment())
         }
+
+        //handling add recipe navigation
+        imgAddRecipes = view.findViewById(R.id.imgAddRecipes)
+        imgAddRecipes.setOnClickListener {
+            replaceFragment(AddYourRecipeFregment())
+        }
+
+        //handling view recipe navigation
+        imgViewRecipes = view.findViewById(R.id.imgViewRecipes)
+        imgViewRecipes.setOnClickListener {
+            replaceFragment(ViewYourRecipesFrgament())
+        }
+
 
         return view
     }
