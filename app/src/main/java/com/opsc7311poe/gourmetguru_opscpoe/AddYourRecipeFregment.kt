@@ -100,7 +100,8 @@ class AddYourRecipeFregment : Fragment() {
                 //assigning recipe data to recipe object
 
                 recipeEntered.name = txtName.text.toString()
-                recipeEntered.method = txtName.text.toString()
+                recipeEntered.method = txtMethod.text.toString()
+                recipeEntered.ingredients = ingredientsEntered
                 recipeEntered.isLocked = swLock.isActivated
 
                 //allowing user to enter duration amount
