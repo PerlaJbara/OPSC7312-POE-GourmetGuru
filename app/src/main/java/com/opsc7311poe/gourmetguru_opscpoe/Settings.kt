@@ -2,6 +2,7 @@ package com.opsc7311poe.gourmetguru_opscpoe
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -36,8 +37,6 @@ class Settings : Fragment() {
         auth = FirebaseAuth.getInstance()
         btnLogout = view.findViewById(R.id.txtlogout)
 
-
-
         btnLogout.setOnClickListener(){
                 auth.signOut()
                 val intent = Intent(activity, Login::class.java)
@@ -46,9 +45,34 @@ class Settings : Fragment() {
 
         }
 
+        //handling change password button
+        btnChangePassword = view.findViewById(R.id.txtchangepass)
+
+        btnChangePassword.setOnClickListener(){
+            replaceFragment(changePassword())
+
+        }
+
+        //handling delete account button
+        btnDeleteAccount = view.findViewById(R.id.txtdelaccount)
+
+        btnDeleteAccount.setOnClickListener(){
+            replaceFragment(DeleteAccount())
+        }
+
+        //handling change language button
+
+
 
         return view
     }
 
+    private fun replaceFragment(fragment: Fragment) {
+        Log.d("Settings Fragment", "Replacing fragment: ${fragment::class.java.simpleName}")
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.frame_container, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
 
 }
