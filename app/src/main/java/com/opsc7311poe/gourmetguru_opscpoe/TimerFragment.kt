@@ -1,5 +1,6 @@
 package com.opsc7311poe.gourmetguru_opscpoe
 
+import android.Manifest
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -18,13 +19,16 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.TimePickerDialog
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.Animatable2
 import android.media.RingtoneManager
 import android.os.Build
 import android.widget.NumberPicker
+import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.navigation.ActivityNavigator
 
 class TimerFragment : Fragment() {
 
@@ -275,23 +279,41 @@ class TimerFragment : Fragment() {
     }
 
 
+    // Create the notification channel if needed (for Android O+)
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = "TimerChannel"
-            val descriptionText = "Channel for Timer Notifications"
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val name = "Timer Notifications"
+            val descriptionText = "Channel for timer notifications"
+            val importance = NotificationManager.IMPORTANCE_HIGH
             val channel = NotificationChannel("timer_channel_id", name, importance).apply {
                 description = descriptionText
             }
-            val notificationManager: NotificationManager = requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+            // Register the channel with the system
+            val notificationManager: NotificationManager =
+                requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
         }
     }
 
 
     // Method to send the notification
+    // Method to send the notification
     private fun sendNotification() {
-        // Get the alarm sound URI
+        // Check if notification permission is granted (for Android 13+)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ActivityCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                // Request notification permission if not granted
+                requestPermissions(arrayOf(Manifest.permission.POST_NOTIFICATIONS), 1001)
+                return
+            }
+        }
+
+        // Proceed to send the notification if permission is granted or not required
         val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
 
         // Build the notification with looping sound and high priority
@@ -311,14 +333,15 @@ class TimerFragment : Fragment() {
         notificationManager.notify(1, builder.build())
     }
 
+    // Handle the result of the permission request
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
         if (requestCode == 1001 && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            // Permission granted, proceed with creating the notification channel
-            createNotificationChannel()
+            // Permission granted, retry sending the notification
+            sendNotification()
         } else {
             Toast.makeText(requireContext(), "Notification permission denied", Toast.LENGTH_SHORT).show()
         }
@@ -327,7 +350,7 @@ class TimerFragment : Fragment() {
 
     // Method to play sound when the timer finishes
     private fun playSound() {
-        val notificationSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        val notificationSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
         val ringtone = RingtoneManager.getRingtone(requireContext(), notificationSound)
         ringtone.play()
     }
