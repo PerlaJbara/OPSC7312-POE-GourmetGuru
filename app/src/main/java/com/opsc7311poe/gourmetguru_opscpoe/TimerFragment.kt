@@ -291,13 +291,22 @@ class TimerFragment : Fragment() {
 
     // Method to send the notification
     private fun sendNotification() {
-        val builder = NotificationCompat.Builder(requireContext(), "timerChannelId")
-            .setSmallIcon(R.drawable.clock) // Set your app's timer icon
+        // Get the alarm sound URI
+        val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+
+        // Build the notification with looping sound and high priority
+        val builder = NotificationCompat.Builder(requireContext(), "timer_channel_id")
+            .setSmallIcon(R.drawable.ggicon) // Set your app's timer icon
             .setContentTitle("Gourmet Guru")
             .setContentText("Your recipe timer is done!")
             .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setAutoCancel(true) // Close notification on tap
+            .setDefaults(NotificationCompat.DEFAULT_ALL)
+            .setSound(alarmSound) // Play the alarm sound
+            .setAutoCancel(true) // Dismiss on tap
+            .setOnlyAlertOnce(false) // Allow sound repetition
+            .setVibrate(longArrayOf(1000, 1000, 1000, 1000)) // Optional: Vibration pattern
 
+        // Send the notification
         val notificationManager = NotificationManagerCompat.from(requireContext())
         notificationManager.notify(1, builder.build())
     }

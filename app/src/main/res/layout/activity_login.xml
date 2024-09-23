@@ -13,13 +13,12 @@
         android:layout_width="409dp"
         android:layout_height="729dp"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -38,107 +37,209 @@
                 android:textColor="@color/ggRed"
                 android:textSize="60sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/lora"
-                    android:paddingLeft="25dp"
-                    android:text="Email:"
-                    android:textColor="@color/ggRed"
-                    android:textSize="28sp" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="396dp">
 
-                <EditText
-                    android:id="@+id/txtREmail"
-                    android:layout_width="169dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/textboxdesign"
-                    android:ems="10"
-                    android:inputType="text"
-                    android:paddingRight="20dp"
-                    android:textColor="@color/black" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/lora"
-                    android:paddingLeft="25dp"
-                    android:text="Password:"
-                    android:textColor="@color/ggRed"
-                    android:textSize="28sp" />
-
-                <EditText
-                    android:id="@+id/txtRPassword"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/textboxdesign"
-                    android:ems="10"
-                    android:inputType="text"
-                    android:paddingRight="20dp"
-                    android:textColor="@color/black" />
-            </LinearLayout>
-
-            <!-- Combine the button and the bottom TextView in one LinearLayout -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
                 android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/btnLogin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/ggRed"
-                    android:fontFamily="@font/lemon"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lora"
+                        android:paddingLeft="25dp"
+                        android:text="Email:"
+                        android:textColor="@color/ggRed"
+                        android:textSize="28sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:orientation="horizontal">
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical">
+
+                        <EditText
+                            android:id="@+id/txtREmail"
+                            android:layout_width="350dp"
+                            android:layout_height="50dp"
+                            android:background="@drawable/textboxdesign"
+                            android:ems="10"
+                            android:hint="Email Address:"
+                            android:inputType="text"
+                            android:paddingRight="20dp"
+                            android:textColor="@color/black"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.271"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lora"
+                        android:paddingLeft="25dp"
+                        android:text="Password:"
+                        android:textColor="@color/ggRed"
+                        android:textSize="28sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical">
+
+                        <EditText
+                            android:id="@+id/txtRPassword"
+                            android:layout_width="350dp"
+                            android:layout_height="50dp"
+                            android:background="@drawable/textboxdesign"
+                            android:ems="10"
+                            android:hint="Password:"
+                            android:inputType="text"
+                            android:textColor="@color/black"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.271"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginTop="15dp"
                     android:gravity="center"
-                    android:text="Login"
-                    android:textAlignment="center"
-                    android:textColor="@color/white" />
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/txtLoginSSo"
+                    <Button
+                        android:id="@+id/btnLogin"
+                        android:layout_width="122dp"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/ggRed"
+                        android:fontFamily="@font/lemon"
+                        android:gravity="center"
+                        android:text="Login"
+                        android:textAlignment="center"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="20dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/txtLoginSSo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/lora"
+                            android:text="Login With"
+                            android:textAlignment="center"
+                            android:textColor="@color/ggRed"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:paddingRight="25dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.651"
+                            app:layout_constraintStart_toStartOf="@+id/txtLoginSSo"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.4"
+                            app:srcCompat="@drawable/google">
+
+                        </ImageView>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/lora"
-                    android:paddingTop="10dp"
-                    android:text="Login With SSO"
-                    android:textAlignment="center"
-                    android:textColor="@color/ggRed"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:layout_marginTop="40dp">
 
-                <TextView
-                    android:id="@+id/txtNoAccount"
+                    <TextView
+                        android:id="@+id/txtNoAccount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lora"
+                        android:text="No Account? Get One Here!"
+                        android:textAlignment="center"
+                        android:textColor="@color/ggRed"
+                        android:textSize="18sp"
+                        android:textStyle="bold|italic" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:fontFamily="@font/lora"
-                    android:paddingTop="100dp"
-                    android:paddingBottom="24dp"
-                    android:text="No Account? Get One Here!"
-                    android:textAlignment="center"
-                    android:textColor="@color/ggRed"
-                    android:textSize="18sp"
-                    android:textStyle="bold|italic" />
+                    android:layout_height="100dp">
+
+                </LinearLayout>
+
             </LinearLayout>
+
+
+        </ScrollView>
+
+
+
         </LinearLayout>
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

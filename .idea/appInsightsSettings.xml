@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.opsc7311poe.gourmetguru_opscpoe" />
+                  <option name="mobileSdkAppId" value="1:381636906301:android:242028641086f2e82a8954" />
+                  <option name="projectId" value="gourmetguru-23c0a" />
+                  <option name="projectNumber" value="381636906301" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
