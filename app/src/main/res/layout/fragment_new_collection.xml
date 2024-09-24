@@ -85,7 +85,7 @@
                 android:textStyle="bold"/>
 
             <EditText
-                android:id="@+id/txtName"
+                android:id="@+id/txtCollectionName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="45dp"

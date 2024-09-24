@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 
 
 class MyRecipesFragment : Fragment() {
@@ -15,6 +16,13 @@ class MyRecipesFragment : Fragment() {
     private lateinit var imgTimer: ImageView
     private lateinit var imgAddRecipes: ImageView
     private lateinit var imgViewRecipes: ImageView
+
+    //nav
+    private lateinit var imgbtnAddCollection: ImageView
+    private lateinit var imgbtnViewCollection: ImageView
+
+    private lateinit var txtAddCollection: TextView
+    private lateinit var txtViewCollection: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,6 +37,32 @@ class MyRecipesFragment : Fragment() {
         // Set onClickListener for imgTimer
         imgTimer.setOnClickListener {
             replaceFragment(TimerFragment())
+        }
+
+        imgbtnAddCollection = view.findViewById(R.id.imgAddCollections)
+        imgbtnViewCollection = view.findViewById(R.id.imgCollections)
+        txtViewCollection = view.findViewById(R.id.txtViewCollections)
+        txtAddCollection = view.findViewById(R.id.txtCreateCollection)
+
+
+
+        imgbtnAddCollection.setOnClickListener(){
+            replaceFragment(NewCollectionFragment())
+        }
+
+        imgbtnViewCollection.setOnClickListener(){
+            replaceFragment(ViewCollectionsFragment())
+        }
+
+
+        //nav to viewing
+        txtAddCollection.setOnClickListener(){
+            replaceFragment(NewCollectionFragment())
+        }
+
+
+        txtViewCollection.setOnClickListener(){
+            replaceFragment(ViewCollectionsFragment())
         }
 
         //handling add recipe navigation
