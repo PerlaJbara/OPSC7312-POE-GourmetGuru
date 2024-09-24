@@ -5,8 +5,9 @@ pluginManagement {
         gradlePluginPortal()
     }
     plugins {
-        id("androidx.navigation.safeargs.kotlin") version "2.5.3" // Use the appropriate version
+        id("androidx.navigation.safeargs.kotlin") version "2.5.3"
         id("com.google.gms.google-services")
+        id("org.jetbrains.kotlin.android")
     }
 }
 

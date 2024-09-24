@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.navMealPlan -> {
                     Log.d("MainActivity", "Meal Plan selected")
-                    replaceFragment(MealPlan())
+                    replaceFragment(MealPlanFragment())
                     true
                 }
                 R.id.navSearch -> {

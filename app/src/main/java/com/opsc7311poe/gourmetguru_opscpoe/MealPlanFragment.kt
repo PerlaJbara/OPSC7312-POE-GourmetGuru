@@ -7,103 +7,55 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import com.opsc7311poe.gourmetguru_opscpoe.R
 
-class MealPlan : Fragment() {
+class MealPlanFragment : Fragment() {
 
-    private lateinit var txtMon: TextView
-    private lateinit var txtTue: TextView
-    private lateinit var txtWed: TextView
-    private lateinit var txtThur: TextView
-    private lateinit var txtFri: TextView
-    private lateinit var txtSat: TextView
-    private lateinit var txtSun: TextView
+    private lateinit var dayTextViews: List<TextView>
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_meal_plan, container, false)
 
+        dayTextViews = listOf(
+            view.findViewById(R.id.txtMon),
+            view.findViewById(R.id.txtTues),
+            view.findViewById(R.id.txtWed),
+            view.findViewById(R.id.txtThur),
+            view.findViewById(R.id.txtFri),
+            view.findViewById(R.id.txtSat),
+            view.findViewById(R.id.txtSun)
+        )
 
-        txtMon = view.findViewById(R.id.txtMon)
-        txtTue = view.findViewById(R.id.txtTues)
-        txtWed = view.findViewById(R.id.txtWed)
-        txtThur = view.findViewById(R.id.txtThur)
-        txtFri = view.findViewById(R.id.txtFri)
-        txtSat = view.findViewById(R.id.txtSat)
-        txtSun = view.findViewById(R.id.txtSun)
+        dayTextViews.forEachIndexed { index, textView ->
+            textView.setOnClickListener {
+                val day = when (index) {
+                    0 -> "Monday"
+                    1 -> "Tuesday"
+                    2 -> "Wednesday"
+                    3 -> "Thursday"
+                    4 -> "Friday"
+                    5 -> "Saturday"
+                    6 -> "Sunday"
+                    else -> ""
+                }
 
-        txtMon.setOnClickListener {
-            val mealPlanDays = MealPlanDaysFragment()
-            val bundle = Bundle()
-            bundle.putString("day", "Monday")
-            mealPlanDays.arguments = bundle
-            it.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-            replaceFragment(mealPlanDays)
-        }
-
-
-        txtTue.setOnClickListener {
-            val mealPlanDays = MealPlanDaysFragment()
-            val bundle = Bundle()
-            bundle.putString("day", "Tuesday")
-            mealPlanDays.arguments = bundle
-            it.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-            replaceFragment(mealPlanDays)
-        }
-
-
-        txtWed.setOnClickListener {
-            val mealPlanDays = MealPlanDaysFragment()
-            val bundle = Bundle()
-            bundle.putString("day", "Wednesday")
-            mealPlanDays.arguments = bundle
-            it.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-            replaceFragment(mealPlanDays)
-        }
-
-
-        txtThur.setOnClickListener {
-            val mealPlanDays = MealPlanDaysFragment()
-            val bundle = Bundle()
-            bundle.putString("day", "Thursday")
-            mealPlanDays.arguments = bundle
-            it.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-            replaceFragment(mealPlanDays)
-        }
-
-
-        txtFri.setOnClickListener {
-            val mealPlanDays = MealPlanDaysFragment()
-            val bundle = Bundle()
-            bundle.putString("day", "Friday")
-            mealPlanDays.arguments = bundle
-            it.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-            replaceFragment(mealPlanDays)
-        }
-
-
-        txtSat.setOnClickListener {
-            val mealPlanDays = MealPlanDaysFragment()
-            val bundle = Bundle()
-            bundle.putString("day", "Saturday")
-            mealPlanDays.arguments = bundle
-            it.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-            replaceFragment(mealPlanDays)
-        }
-
-
-        txtSun.setOnClickListener {
-            val mealPlanDays = MealPlanDaysFragment()
-            val bundle = Bundle()
-            bundle.putString("day", "Sunday")
-            mealPlanDays.arguments = bundle
-            it.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-            replaceFragment(mealPlanDays)
+                it.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                navigateToMealPlanDaysFragment(day)
+            }
         }
 
         return view
+    }
+
+    private fun navigateToMealPlanDaysFragment(day: String) {
+        val mealPlanDays = MealPlanDaysFragment().apply {
+            arguments = Bundle().apply {
+                putString("day", day)
+            }
+        }
+        replaceFragment(mealPlanDays)
     }
 
     private fun replaceFragment(fragment: Fragment) {

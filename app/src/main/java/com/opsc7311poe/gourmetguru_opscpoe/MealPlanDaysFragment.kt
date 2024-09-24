@@ -4,55 +4,93 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import android.widget.Toast.*
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import com.opsc7311poe.gourmetguru_opscpoe.databinding.FragmentMealPlanDaysBinding
-import androidx.navigation.NavDirections
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class MealPlanDaysFragment : Fragment() {
 
-private lateinit var txtDayOfWeek: TextView
-private lateinit var txtBreakfast: TextView
-private lateinit var txtLunch: TextView
-private lateinit var txtDinner: TextView
+    private lateinit var txtDayOfWeek: TextView
+    private lateinit var txtBreakfast: TextView
+    private lateinit var txtLunch: TextView
+    private lateinit var txtDinner: TextView
+    private lateinit var txtSelDinner: TextView
+    private lateinit var txtSelBreakfast: TextView
+    private lateinit var txtSelLunch: TextView
+    private lateinit var userId: String
+    private lateinit var btnBack: ImageView
+    private var day: String? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_meal_plan_days, container, false)
 
         txtDayOfWeek = view.findViewById(R.id.txtMainDay)
-        //getting the day from the argument that was passed from prev frag
-        val day = arguments?.getString("day") ?: ""
-        // Set the text of the TextView
-        txtDayOfWeek.text = day
-
-
         txtBreakfast = view.findViewById(R.id.txtBreak)
         txtLunch = view.findViewById(R.id.txtLunch)
         txtDinner = view.findViewById(R.id.txtDinner)
+        txtSelDinner = view.findViewById(R.id.txtDinnerSelected)
+        txtSelBreakfast = view.findViewById(R.id.txtBreakfastSelected)
+        txtSelLunch = view.findViewById(R.id.txtLunchSelected)
 
-        txtBreakfast.setOnClickListener(){
-            replaceFragment(SearchFragment())
-            Toast.makeText(requireContext(), "Please select your breakfast!", Toast.LENGTH_SHORT).show()
+        btnBack = view.findViewById(R.id.btnBack)
+
+        btnBack.setOnClickListener(){
+            replaceFragment(MealPlanFragment())
         }
 
-        txtLunch.setOnClickListener(){
-            replaceFragment(SearchFragment())
-            Toast.makeText(requireContext(), "Please select your lunch!", Toast.LENGTH_SHORT).show()
-        }
 
-        txtDinner.setOnClickListener(){
-            replaceFragment(SearchFragment())
-            Toast.makeText(requireContext(), "Please select your dinner!", Toast.LENGTH_SHORT).show()
-        }
+        userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+        day = arguments?.getString("day") ?: ""
+
+        txtDayOfWeek.text = day
+        fetchSelectedMeals()
+
+        txtBreakfast.setOnClickListener { navigateToSelectMealFragment("breakfast") }
+        txtLunch.setOnClickListener { navigateToSelectMealFragment("lunch") }
+        txtDinner.setOnClickListener { navigateToSelectMealFragment("dinner") }
 
         return view
+    }
+
+
+    private fun fetchSelectedMeals() {
+        val mealPlanPath = "Users/$userId/MealPlan/$day"
+
+        FirebaseDatabase.getInstance().reference.child(mealPlanPath)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    txtSelBreakfast.text = dataSnapshot.child("breakfast").getValue(String::class.java) ?: "No Breakfast selected"
+                    txtSelLunch.text = dataSnapshot.child("lunch").getValue(String::class.java) ?: "No Lunch selected"
+                    txtSelDinner.text = dataSnapshot.child("dinner").getValue(String::class.java) ?: "No Dinner selected"
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    Toast.makeText(requireContext(), "Error fetching meals: ${databaseError.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
+    }
+
+    private fun navigateToSelectMealFragment(mealType: String) {
+        val selectMealFragment = SelectMealFragment().apply {
+            arguments = Bundle().apply {
+                putString("day", day)
+                putString("mealType", mealType)
+            }
+        }
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.frame_container, selectMealFragment)
+            .addToBackStack(null)
+            .commit()
     }
 
     private fun replaceFragment(fragment: Fragment) {

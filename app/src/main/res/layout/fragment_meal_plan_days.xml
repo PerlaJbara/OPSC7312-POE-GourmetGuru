@@ -86,7 +86,7 @@
                 android:orientation="vertical" >
 
                 <TextView
-                    android:id="@+id/txtViewShopping"
+                    android:id="@+id/txtChooseYourMeals"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="25dp"
@@ -110,6 +110,17 @@
                     android:textSize="24dp" />
 
                 <TextView
+                    android:id="@+id/txtBreakfastSelected"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="25dp"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="@font/lora"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:text="No breakfast has been selected yet."/>
+
+                <TextView
                     android:id="@+id/txtLunch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -122,6 +133,17 @@
                     android:textSize="24dp" />
 
                 <TextView
+                    android:id="@+id/txtLunchSelected"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="25dp"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="@font/lora"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:text="No lunch has been selected yet."/>
+
+                <TextView
                     android:id="@+id/txtDinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -132,6 +154,17 @@
                     android:fontFamily="@font/lora"
                     android:textStyle="bold"
                     android:textSize="24dp" />
+
+                <TextView
+                    android:id="@+id/txtDinnerSelected"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="25dp"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="@font/lora"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:text="No dinner has been selected yet."/>
 
 
             </LinearLayout>
