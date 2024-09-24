@@ -58,7 +58,8 @@ class SearchFragment : Fragment() {
         // Clear previous results
         binding.layoutResults.removeAllViews()
 
-        database.child("Users").child("cuisines")
+        // Corrected path to directly query from "cuisines" instead of "Users"
+        database.child("cuisines")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val resultList = mutableListOf<String>()
@@ -127,7 +128,8 @@ class SearchFragment : Fragment() {
         // Clear previous results
         binding.layoutResults.removeAllViews()
 
-        database.child("Users").child("cuisines").child(cuisine).child("recipes")
+        // Corrected path to directly query from "cuisines" instead of "Users"
+        database.child("cuisines").child(cuisine).child("recipes")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val recipeList = mutableListOf<String>()
