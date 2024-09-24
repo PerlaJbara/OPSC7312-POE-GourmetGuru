@@ -15,6 +15,30 @@
       },
       "oauth_client": [
         {
+          "client_id": "381636906301-7kupolmm3jgn98qrrnm1i0f4hqlto3f0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.opsc7311poe.gourmetguru_opscpoe",
+            "certificate_hash": "f0f56d3844d3be0eb6460f4bf5ea40c89bc6d848"
+          }
+        },
+        {
+          "client_id": "381636906301-jhnkqaa6pem2j1cb5lthjvisu3is8u4r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.opsc7311poe.gourmetguru_opscpoe",
+            "certificate_hash": "705f1061aff260923a009f46b87f5ff567963e62"
+          }
+        },
+        {
+          "client_id": "381636906301-t3g7rf6t3paok4l02mdoosehq6tqo6g8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.opsc7311poe.gourmetguru_opscpoe",
+            "certificate_hash": "ced3711af1ed03f1303b263c93f80ecd5a8b4011"
+          }
+        },
+        {
           "client_id": "381636906301-rtmeb4afv74tk7lrlntak3651jc1e4c0.apps.googleusercontent.com",
           "client_type": 3
         }
