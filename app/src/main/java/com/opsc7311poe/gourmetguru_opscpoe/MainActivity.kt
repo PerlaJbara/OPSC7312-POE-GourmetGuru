@@ -12,12 +12,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_main)
 
         bottomNavView = findViewById(R.id.bottom_navigation)
 
+        // Set "Home" as the selected item
+        bottomNavView.selectedItemId = R.id.navHome
+
+        // Load the HomeFragment initially
         replaceFragment(HomeFragment())
+
         bottomNavView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.navHome -> {
@@ -52,9 +56,9 @@ class MainActivity : AppCompatActivity() {
         // Set default fragment if there's no saved instance state
         if (savedInstanceState == null) {
             replaceFragment(HomeFragment())
-
         }
     }
+
 
     private fun replaceFragment(fragment: Fragment) {
         Log.d("MainActivity", "Replacing fragment: ${fragment::class.java.simpleName}")
