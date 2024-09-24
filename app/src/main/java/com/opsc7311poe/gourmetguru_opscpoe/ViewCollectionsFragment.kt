@@ -1,5 +1,6 @@
 package com.opsc7311poe.gourmetguru_opscpoe
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +13,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import android.graphics.Color
+import androidx.core.content.res.ResourcesCompat
 
 class ViewCollectionsFragment : Fragment() {
 
@@ -77,8 +80,10 @@ class ViewCollectionsFragment : Fragment() {
                         // Create a TextView for each collection
                         val collectionTextView = TextView(requireContext()).apply {
                             text = collectionName
-                            textSize = 20f // Adjust size as needed
-                            setPadding(16, 16, 16, 16) // Adjust padding as needed
+                            textSize = dpToPx(24f) / requireContext().resources.displayMetrics.density // Convert to sp
+                            typeface = ResourcesCompat.getFont(requireContext(), R.font.lora) // Use ResourcesCompat to load the font
+                            setPadding(25, 18, 16, 16) // Adjust padding as needed
+                            setTextColor(Color.WHITE) // Set text color to white
                         }
 
                         // Add the TextView to the LinearLayout
@@ -90,5 +95,10 @@ class ViewCollectionsFragment : Fragment() {
                     Toast.makeText(requireContext(), "Failed to load collections: ${databaseError.message}", Toast.LENGTH_SHORT).show()
                 }
             })
+    }
+
+    fun dpToPx(dp: Float): Float {
+        val density = requireContext().resources.displayMetrics.density
+        return dp * density
     }
 }

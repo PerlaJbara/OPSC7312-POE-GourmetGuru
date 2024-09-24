@@ -89,7 +89,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="45dp"
-                android:background="@drawable/txt_background"/>
+                android:background="@drawable/txt_background"
+                android:textColor="@color/black" />
 
             <Button
                 android:id="@+id/btnSave"
