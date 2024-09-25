@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "381636906301-3orqu4tc4109pobg9t6sj0vl5nvcgrtt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.opsc7311poe.gourmetguru_opscpoe",
+            "certificate_hash": "29309c55c8dd2543a53c1d6d2d1dfb72962a58b8"
+          }
+        },
+        {
           "client_id": "381636906301-4hf6iurf05kmmmrfnnftlnvckgs3sft5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
