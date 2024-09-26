@@ -7,7 +7,7 @@ data class RecipeData (
     var name: String?,
     var duration: Duration?,
     var ingredients: List<Ingredient>?,
-    var method: String?,
+    var method: List<String>?,
     var isLocked: Boolean?
 
 ){

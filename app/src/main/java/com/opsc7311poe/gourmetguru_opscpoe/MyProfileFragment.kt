@@ -20,6 +20,9 @@ private lateinit var btnOpenSettings: ImageView
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_my_profile, container, false)
 
+        //fetching and displaying user information
+        
+
         btnOpenSettings = view.findViewById(R.id.btnsettings)
 
         btnOpenSettings.setOnClickListener(){

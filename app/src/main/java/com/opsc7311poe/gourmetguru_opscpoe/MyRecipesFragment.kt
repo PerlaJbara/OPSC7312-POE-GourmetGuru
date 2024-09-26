@@ -16,6 +16,7 @@ class MyRecipesFragment : Fragment() {
     private lateinit var imgTimer: ImageView
     private lateinit var imgAddRecipes: ImageView
     private lateinit var imgViewRecipes: ImageView
+    private  lateinit var imgViewBack: ImageView
 
     //nav
     private lateinit var imgbtnAddCollection: ImageView
@@ -77,6 +78,11 @@ class MyRecipesFragment : Fragment() {
             replaceFragment(ViewYourRecipesFrgament())
         }
 
+        //handling back button functionality
+        imgViewBack = view.findViewById(R.id.btnBack)
+        imgViewBack.setOnClickListener {
+            replaceFragment(HomeFragment())
+        }
 
         return view
     }

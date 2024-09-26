@@ -285,7 +285,6 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <!-- Submit Button -->
                     <Button
                         android:id="@+id/btnAddIngredient"
                         android:layout_width="wrap_content"
@@ -315,21 +314,60 @@
                         android:textSize="20dp"
                         android:textStyle="bold" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/txtMethod"
-                        android:layout_width="300dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/txt_greyborder"
+                        android:fontFamily="@font/lora"
+                        android:textColor="@color/white"
+                        android:paddingTop="5dp"
                         android:paddingBottom="20dp"
-                        android:layout_marginBottom="12dp"
-                        android:background="@drawable/txt_background"
-                        android:paddingTop="20dp"
                         tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 </LinearLayout>
 
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtStepHeading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginVertical="5dp"
+                        android:fontFamily="@font/lora"
+                        android:text="Enter next step:"
+                        android:textColor="@android:color/white"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/txtStep"
+                        android:layout_width="match_parent"
+                        android:paddingBottom="40dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/txt_background"
+                        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnAddStep"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:backgroundTint="@color/black"
+                    android:text="Add Step"
+                    android:textColor="@android:color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="400dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"

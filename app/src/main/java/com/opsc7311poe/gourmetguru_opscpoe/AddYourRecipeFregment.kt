@@ -29,13 +29,17 @@ class AddYourRecipeFregment : Fragment() {
     private lateinit var txtAllIngredients: TextView
     private lateinit var txtIngrName: EditText
     private lateinit var txtIngrAmount: EditText
-    private lateinit var txtMethod: EditText
+    private lateinit var txtMethod: TextView
+    private lateinit var txtStep: EditText
     private lateinit var swLock: Switch
     private lateinit var btnAdd: Button
     private lateinit var btnAddIngr: Button
+    private lateinit var btnAddStep: Button
+    private lateinit var btnBack: ImageView
 
     var recipeEntered: RecipeData = RecipeData()
     var ingredientsEntered: MutableList<Ingredient> = mutableListOf()
+    var method: MutableList<String> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,10 +59,45 @@ class AddYourRecipeFregment : Fragment() {
         swLock = view.findViewById(R.id.swLockRecipe)
         btnAdd = view.findViewById(R.id.btnAddRecipe)
         btnAddIngr = view.findViewById(R.id.btnAddIngredient)
+        btnAddStep = view.findViewById(R.id.btnAddStep)
+        txtStep = view.findViewById(R.id.txtStep)
 
-        //handling add ingredient functionality
-        btnAddIngr = view.findViewById(R.id.btnAddIngredient)
+        //handling back button functionality
+        btnBack = view.findViewById(R.id.btnBack)
+        btnBack.setOnClickListener{
+            replaceFragment(MyRecipesFragment())
+        }
 
+        //handling add step to method functionality
+
+        btnAddStep.setOnClickListener{
+
+            //checking all fields are filled
+            if(txtStep.text.toString().isBlank())
+            {
+                Toast.makeText( requireContext(), "Please enter the next step for the method.", Toast.LENGTH_SHORT).show()
+            }
+            else
+            {
+
+                method.add(txtStep.text.toString())
+                txtStep.text.clear()
+
+                //displaying updated list to user
+                var allStepsString: String = ""
+                for(step in method)
+                {
+                    allStepsString += step
+                    allStepsString += "\n"
+                }
+
+                txtMethod.textAlignment = View.TEXT_ALIGNMENT_VIEW_START
+                txtMethod.text = allStepsString
+            }
+
+        }
+
+        //handling add ingredients  functionality
         btnAddIngr.setOnClickListener{
 
             //checking all fields are filled
@@ -70,6 +109,8 @@ class AddYourRecipeFregment : Fragment() {
             {
 
                 ingredientsEntered.add(Ingredient(txtIngrName.text.toString(), txtIngrAmount.text.toString()))
+                txtIngrName.text.clear()
+                txtIngrAmount.text.clear()
 
                 //displaying updated list to user
                 var allIngreString: String = ""
@@ -100,9 +141,9 @@ class AddYourRecipeFregment : Fragment() {
                 //assigning recipe data to recipe object
 
                 recipeEntered.name = txtName.text.toString()
-                recipeEntered.method = txtMethod.text.toString()
+                recipeEntered.method = method
                 recipeEntered.ingredients = ingredientsEntered
-                recipeEntered.isLocked = swLock.isActivated
+                recipeEntered.isLocked = swLock.isChecked
 
                 //allowing user to enter duration amount
                 var recipeDuration: Duration
