@@ -146,12 +146,8 @@ class AddYourRecipeFregment : Fragment() {
                 recipeEntered.isLocked = swLock.isChecked
 
                 //allowing user to enter duration amount
-                var recipeDuration: Duration
-                var hoursLong: Long = txtDurationHrs.text.toString().toLong()
-                var minsLong: Long = txtDurationMins.text.toString().toLong()
-
-                recipeDuration = Duration.ofHours(hoursLong).plusMinutes(minsLong)
-                recipeEntered.duration = recipeDuration
+                recipeEntered.durationHrs = txtDurationHrs.text.toString().toDouble()
+                recipeEntered.durationMins = txtDurationMins.text.toString().toDouble()
 
 
                 //saving recipe locally incase user is offline in RoomDB

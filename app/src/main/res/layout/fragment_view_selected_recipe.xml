@@ -144,7 +144,7 @@
                         android:layout_gravity="left"
                         android:paddingTop="20dp"
                         android:paddingBottom="20dp"
-                        android:paddingLeft="50dp"
+                        android:paddingLeft="20dp"
                         android:fontFamily="@font/lora"
                         android:text="Ingredients:"
                         android:textColor="@android:color/white"
@@ -159,10 +159,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <EditText
-                        android:id="@+id/edttxtIngredients"
+                    <TextView
+                        android:id="@+id/txtIngredients"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:fontFamily="@font/lora"
+                        android:textColor="@android:color/white"
                         android:inputType="textMultiLine"
                         android:minLines="3"
                         android:gravity="top" />
@@ -181,7 +184,7 @@
                         android:layout_gravity="left"
                         android:paddingTop="20dp"
                         android:paddingBottom="20dp"
-                        android:paddingLeft="50dp"
+                        android:paddingLeft="20dp"
                         android:fontFamily="@font/lora"
                         android:text="Method:"
                         android:textColor="@android:color/white"
@@ -195,11 +198,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <EditText
-                        android:id="@+id/edttxtMethods"
+                    <TextView
+                        android:id="@+id/txtMethods"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textMultiLine"
+                        android:fontFamily="@font/lora"
+                        android:layout_marginHorizontal="30dp"
+                        android:textColor="@android:color/white"
                         android:minLines="3"
                         android:gravity="top" />
 
@@ -212,7 +217,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <!--<androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="80dp">
 
@@ -288,7 +293,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
                 </LinearLayout>
 

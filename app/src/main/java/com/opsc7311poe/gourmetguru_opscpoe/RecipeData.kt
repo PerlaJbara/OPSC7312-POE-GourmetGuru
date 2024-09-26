@@ -5,14 +5,15 @@ import java.time.Duration
 data class RecipeData (
     var id: String?,
     var name: String?,
-    var duration: Duration?,
+    var durationHrs: Double?,
+    var durationMins: Double?,
     var ingredients: List<Ingredient>?,
     var method: List<String>?,
     var isLocked: Boolean?
 
 ){
     // No-argument constructor (required by Firebase)
-    constructor() : this(null, null, null, null, null, null)
+    constructor() : this(null, null, null, null, null, null, null)
 }
 
 data class Ingredient(
