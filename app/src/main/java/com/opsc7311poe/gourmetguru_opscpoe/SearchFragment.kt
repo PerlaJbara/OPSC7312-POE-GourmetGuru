@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -27,7 +27,7 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout using view binding
-        binding = FragmentSearchBinding.inflate(inflater, container, false)
+        binding = com.opsc7311poe.gourmetguru_opscpoe.databinding.FragmentSearchBinding.inflate(inflater, container, false)
 
         mealType = arguments?.getString("mealType")
 
@@ -35,7 +35,7 @@ class SearchFragment : Fragment() {
         btnBack = binding.btnBack
         btnBack.setOnClickListener {
             it.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-            findNavController().popBackStack()
+            parentFragmentManager.popBackStack()
         }
 
         // Search button action
@@ -58,36 +58,37 @@ class SearchFragment : Fragment() {
         // Clear previous results
         binding.layoutResults.removeAllViews()
 
-        // Corrected path to directly query from "cuisines" instead of "Users"
         database.child("cuisines")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val resultList = mutableListOf<String>()
 
-                    // Loop through all cuisines
                     for (cuisineSnapshot in dataSnapshot.children) {
                         val cuisine = cuisineSnapshot.key
-
-                        // Loop through the recipes within each cuisine
                         val recipeSnapshot = cuisineSnapshot.child("recipes")
+
                         for (recipe in recipeSnapshot.children) {
                             val recipeName = recipe.key
                             if (recipeName?.contains(query, ignoreCase = true) == true) {
                                 resultList.add("$cuisine: $recipeName")
 
-                                // Dynamically add results to ScrollView
+                                // Create a text box for each recipe
                                 val textView = TextView(requireContext()).apply {
                                     text = "$recipeName ($cuisine)"
                                     textSize = 18f
                                     setTextColor(resources.getColor(android.R.color.white))
-                                    setPadding(16, 16, 16, 16)
+                                    setPadding(30, 16, 16, 16)
+                                    background = resources.getDrawable(R.drawable.textbox_background, null)
+                                    setOnClickListener {
+                                        // Handle the click to navigate to ViewSelectedFragment and pass data
+                                        onRecipeClicked(cuisine ?: "", recipeName ?: "")
+                                    }
                                 }
                                 binding.layoutResults.addView(textView)
                             }
                         }
                     }
 
-                    // No results found
                     if (resultList.isEmpty()) {
                         val textView = TextView(requireContext()).apply {
                             text = "No results found for: $query"
@@ -111,8 +112,29 @@ class SearchFragment : Fragment() {
             })
     }
 
+    private fun onRecipeClicked(cuisine: String, recipeName: String) {
+        // Create a new instance of ViewSelectedFragment
+        val viewSelectedFragment = ViewSelectedFragment()
+
+        // Create a bundle to pass the recipe data
+        val bundle = Bundle().apply {
+            putString("cuisine", cuisine)
+            putString("recipeName", recipeName)
+        }
+
+        // Attach the bundle to the fragment
+        viewSelectedFragment.arguments = bundle
+
+        // Perform the fragment transaction to switch to ViewSelectedFragment
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.frame_container, viewSelectedFragment)
+            .addToBackStack(null)
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            .commit()
+    }
+
     private fun showFilterDialog() {
-        val filterOptions = arrayOf("Italian", "Lebanese", "Mexican", "Portuguese")
+        val filterOptions = arrayOf("Italian", "Lebanese", "Mexican", "Portuguese", "French", "Indian", "Japanese", "South African")
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("Choose a cuisine")
         builder.setItems(filterOptions) { dialog, which ->
@@ -128,13 +150,11 @@ class SearchFragment : Fragment() {
         // Clear previous results
         binding.layoutResults.removeAllViews()
 
-        // Corrected path to directly query from "cuisines" instead of "Users"
         database.child("cuisines").child(cuisine).child("recipes")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val recipeList = mutableListOf<String>()
 
-                    // Loop through the recipes within the selected cuisine
                     for (recipeSnapshot in dataSnapshot.children) {
                         val recipeName = recipeSnapshot.key
                         recipeList.add(recipeName ?: "")
@@ -145,11 +165,14 @@ class SearchFragment : Fragment() {
                             textSize = 18f
                             setTextColor(resources.getColor(android.R.color.white))
                             setPadding(16, 16, 16, 16)
+                            background = resources.getDrawable(R.drawable.textbox_background, null)
+                            setOnClickListener {
+                                onRecipeClicked(cuisine, recipeName ?: "")
+                            }
                         }
                         binding.layoutResults.addView(textView)
                     }
 
-                    // No recipes found for the selected cuisine
                     if (recipeList.isEmpty()) {
                         val textView = TextView(requireContext()).apply {
                             text = "No recipes found for: $cuisine"

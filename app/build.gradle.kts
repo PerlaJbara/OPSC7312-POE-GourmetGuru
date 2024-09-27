@@ -68,6 +68,8 @@ dependencies {
     implementation ("com.google.android.gms:play-services-auth:20.5.0")
     implementation  ("com.google.android.gms:play-services-auth:20.5.0")
     implementation  ("com.google.firebase:firebase-auth:22.1.1")
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
