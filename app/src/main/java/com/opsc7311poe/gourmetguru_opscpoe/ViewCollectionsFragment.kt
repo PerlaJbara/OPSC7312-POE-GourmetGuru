@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import android.graphics.Color
+import android.view.HapticFeedbackConstants
 import androidx.core.content.res.ResourcesCompat
 
 class ViewCollectionsFragment : Fragment() {
@@ -75,7 +76,7 @@ class ViewCollectionsFragment : Fragment() {
                     colLinLay.removeAllViews() // Clear previous views
 
                     for (collectionSnapshot in dataSnapshot.children) {
-                        val collectionName = collectionSnapshot.value as String
+                        val collectionName = collectionSnapshot.child("name").value as String
 
                         // Create a TextView for each collection
                         val collectionTextView = TextView(requireContext()).apply {
@@ -84,6 +85,17 @@ class ViewCollectionsFragment : Fragment() {
                             typeface = ResourcesCompat.getFont(requireContext(), R.font.lora) // Use ResourcesCompat to load the font
                             setPadding(25, 18, 16, 16) // Adjust padding as needed
                             setTextColor(Color.WHITE) // Set text color to white
+                        }
+
+                        collectionTextView.setOnClickListener {
+                            val viewSelectedCollFrag = ViewCollectionFragment()
+                            //transferring collection info using a bundle
+                            val bundle = Bundle()
+                            bundle.putString("collectionID", collectionSnapshot.key)
+                            viewSelectedCollFrag.arguments = bundle
+                            //changing to recipe info fragment
+                            it.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                            replaceFragment(viewSelectedCollFrag)
                         }
 
                         // Add the TextView to the LinearLayout

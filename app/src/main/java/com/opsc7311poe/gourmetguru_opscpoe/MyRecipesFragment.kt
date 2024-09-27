@@ -46,7 +46,6 @@ class MyRecipesFragment : Fragment() {
         txtAddCollection = view.findViewById(R.id.txtCreateCollection)
 
 
-
         imgbtnAddCollection.setOnClickListener(){
             replaceFragment(NewCollectionFragment())
         }

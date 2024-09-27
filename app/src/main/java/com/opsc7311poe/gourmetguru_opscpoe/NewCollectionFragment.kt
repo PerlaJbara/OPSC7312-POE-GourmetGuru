@@ -71,7 +71,7 @@ class NewCollectionFragment : Fragment() {
         val collectionsRef = database.child("Users").child(userId).child("Collections").child(collectionId)
 
         // Save the collection name to Firebase
-        collectionsRef.setValue(collectionName)
+        collectionsRef.child("name").setValue(collectionName)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(requireContext(), "Collection saved successfully", Toast.LENGTH_SHORT).show()
