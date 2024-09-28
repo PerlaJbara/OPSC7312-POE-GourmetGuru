@@ -1,5 +1,6 @@
 package com.opsc7311poe.gourmetguru_opscpoe
 
+import android.media.RingtoneManager
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -57,6 +58,14 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             replaceFragment(HomeFragment())
         }
+
+        // Stop the alarm sound if the app is opened from notification
+        val notificationSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+        val ringtone = RingtoneManager.getRingtone(this, notificationSound)
+        if (ringtone.isPlaying) {
+            ringtone.stop()
+        }
+
     }
 
 

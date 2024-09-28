@@ -1,3 +1,5 @@
+
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
@@ -70,8 +72,13 @@ dependencies {
     implementation  ("com.google.firebase:firebase-auth:22.1.1")
     implementation ("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
-
+    implementation(libs.glide)
+    annotationProcessor(libs.glideCompiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.picasso)
+    implementation(libs.retrofit)
+    implementation(libs.gsonConverter)
+    implementation(libs.gson)
 }

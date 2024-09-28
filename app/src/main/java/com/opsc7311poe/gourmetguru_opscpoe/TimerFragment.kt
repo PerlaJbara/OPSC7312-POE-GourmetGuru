@@ -17,13 +17,19 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.Animatable2
+import android.media.MediaPlayer
+import android.media.Ringtone
 import android.media.RingtoneManager
+import android.net.Uri
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
 import android.widget.NumberPicker
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
@@ -38,13 +44,15 @@ class TimerFragment : Fragment() {
     private lateinit var txtElapsedTime: TextView
     private lateinit var btnStart: Button
     private lateinit var btnReset: TextView
+    private lateinit var btnEnd: Button
     private var countdownTimer: CountDownTimer? = null
     private var timeInMillis: Long = 0 // To store user input time in milliseconds
     private var timeRemaining: Long = 0L
     private var isTimerRunning: Boolean = false
     private lateinit var btnPause: Button
     private lateinit var clockImg : ImageView
-
+    private var ringtone: Ringtone? = null
+    private var isAlarmPlaying = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,6 +75,7 @@ class TimerFragment : Fragment() {
         btnReset = view.findViewById(R.id.btnReset)
         btnPause = view.findViewById(R.id.btnPauseTimer)
         clockImg = view.findViewById(R.id.imgAnimatedClock)
+        btnEnd = view.findViewById(R.id.btnEndAlarm)
 
 
         // Check if notification permission is granted
@@ -117,10 +126,16 @@ class TimerFragment : Fragment() {
             resetTimer()
         }
 
+        // End Alarm Button functionality
+        btnEnd.setOnClickListener {
+            stopAlarm()
+            // Hide the End Alarm button
+            btnEnd.visibility = View.GONE
+        }
+
 
 
     }
-
 
 
 
@@ -175,9 +190,6 @@ class TimerFragment : Fragment() {
 
         builder.show()
     }
-
-
-
 
 
     /* // Function to show the input dialog
@@ -235,10 +247,11 @@ class TimerFragment : Fragment() {
                 Toast.makeText(requireContext(), "Timer Finished!", Toast.LENGTH_SHORT).show()
                 btnStart.visibility = View.VISIBLE
                 btnPause.visibility = View.GONE
+                btnEnd.visibility = View.VISIBLE
                 // Send push notification
                 sendNotification()
                 // Play a sound when the timer is finished
-                playSound()
+                playAlarm()
 
                 val drawable = clockImg.drawable
                 if (drawable is Animatable2) {
@@ -246,6 +259,23 @@ class TimerFragment : Fragment() {
                 }
             }
         }.start()
+    }
+
+    // Play the system's default alarm sound
+    private fun playAlarm() {
+        val alarmUri: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+        ringtone = RingtoneManager.getRingtone(requireContext(), alarmUri)
+
+        // Start playing the alarm sound
+        ringtone?.play()
+        isAlarmPlaying = true
+    }
+    // Stop the alarm sound
+    private fun stopAlarm() {
+        if (isAlarmPlaying) {
+            ringtone?.stop()
+            isAlarmPlaying = false
+        }
     }
 
     // Function to update the timer display
@@ -313,6 +343,25 @@ class TimerFragment : Fragment() {
             }
         }
 
+        // Create the intent for opening the app
+        val openAppIntent = Intent(requireContext(), MainActivity::class.java)
+        openAppIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        val pendingOpenAppIntent = PendingIntent.getActivity(
+            requireContext(),
+            0,
+            openAppIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        // Create the intent for notification dismissal
+        val deleteIntent = Intent(requireContext(), NotificationDismissedReceiver::class.java)
+        val pendingDeleteIntent = PendingIntent.getBroadcast(
+            requireContext(),
+            0,
+            deleteIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
         // Proceed to send the notification if permission is granted or not required
         val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
 
@@ -349,11 +398,17 @@ class TimerFragment : Fragment() {
 
 
     // Method to play sound when the timer finishes
-    private fun playSound() {
+    /*private fun playSound() {
         val notificationSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
         val ringtone = RingtoneManager.getRingtone(requireContext(), notificationSound)
         ringtone.play()
-    }
+
+        // Stop the ringtone after a few seconds
+        Handler(Looper.getMainLooper()).postDelayed({
+            ringtone.stop()
+        }, 5000) // Stops the sound after 5 seconds
+    }*/
+
 
 
     // Function to replace the current fragment
