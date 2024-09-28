@@ -205,7 +205,7 @@
                                 android:layout_width="163dp"
                                 android:layout_height="47dp"
                                 android:gravity="center_vertical"
-                                android:text="Steps:"
+                                android:text="Method:"
                                 android:textStyle="bold"
                                 android:textColor="@color/white"
                                 android:textSize="25dp"
