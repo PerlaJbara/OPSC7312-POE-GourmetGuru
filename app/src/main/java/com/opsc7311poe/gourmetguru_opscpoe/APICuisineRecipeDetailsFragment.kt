@@ -52,7 +52,8 @@ class APICuisineRecipeDetailsFragment : Fragment() {
         stepsRecyclerView = view.findViewById(R.id.rvRecipeSteps)
 
         btnBack.setOnClickListener {
-            replaceFragment(HomeFragment())
+            //replaceFragment(HomeFragment())
+            parentFragmentManager.popBackStack()
         }
 
         ingredientsRecyclerView.layoutManager = LinearLayoutManager(context)

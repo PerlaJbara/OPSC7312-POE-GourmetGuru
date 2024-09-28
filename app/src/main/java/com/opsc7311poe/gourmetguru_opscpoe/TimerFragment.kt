@@ -92,6 +92,10 @@ class TimerFragment : Fragment() {
             createNotificationChannel()
         }
 
+        btnBack.setOnClickListener {
+            replaceFragment(MyRecipesFragment())
+        }
+
 
         // Handle selecting the time
         txtElapsedTime.setOnClickListener {
