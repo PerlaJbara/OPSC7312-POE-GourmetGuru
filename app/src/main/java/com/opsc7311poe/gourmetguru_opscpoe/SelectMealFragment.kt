@@ -40,7 +40,7 @@ class SelectMealFragment : Fragment() {
         rootView.findViewById<Button>(R.id.btnSearch).setOnClickListener {
             val searchQuery = rootView.findViewById<EditText>(R.id.txtName).text.toString()
             if (searchQuery.isNotEmpty()) {
-                performSearch(searchQuery)
+                searchRecipes(searchQuery)
             } else {
                 Toast.makeText(requireContext(), "Please enter a search term", Toast.LENGTH_SHORT).show()
             }
@@ -53,32 +53,45 @@ class SelectMealFragment : Fragment() {
         return rootView
     }
 
-    private fun performSearch(query: String) {
-        resultsLayout.removeAllViews()
-        val lowerCaseQuery = query.lowercase() // Convert the query to lowercase
+    private fun searchRecipes(query: String) {
+        resultsLayout.removeAllViews() // Clear previous results
+        val lowerCaseQuery = query.lowercase().trim() // Convert the query to lowercase and trim
 
-        // First, search through the cuisines
+        // Access the public recipes under cuisines
         FirebaseDatabase.getInstance().reference.child("cuisines")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     var foundRecipe = false
 
-                    // Check cuisines
+                    // Iterate through the cuisines and recipes
                     for (cuisineSnapshot in dataSnapshot.children) {
-                        val recipeSnapshot = cuisineSnapshot.child("recipes")
-                        for (recipe in recipeSnapshot.children) {
-                            val recipeName = recipe.key?.lowercase() // Convert recipe name to lowercase
+                        for (recipeSnapshot in cuisineSnapshot.child("recipes").children) {
+                            val recipeName = recipeSnapshot.key?.lowercase()?.trim() // Get the recipe name
+                            Log.d("RecipeSearch", "Recipe found: $recipeName") // Log the found recipe
+
+                            // Check if the recipe name matches the search query
                             if (recipeName?.contains(lowerCaseQuery) == true) {
                                 foundRecipe = true
-                                createRecipeTextView(recipe.key ?: "", recipe.key ?: "")
+
+                                // Extract ingredients
+                                val ingredientsList = recipeSnapshot.child("ingredients").children.mapNotNull {
+                                    it.getValue(String::class.java)
+                                }
+
+                                // Ensure the recipe name (key) is not null before passing it
+                                if (recipeName != null) {
+                                    createRecipeTextView(recipeName, ingredientsList) // Pass recipe name and ingredients
+                                } else {
+                                    Log.d("Debug", "Recipe snapshot key is null")
+                                }
                             }
                         }
                     }
 
-                    // Now, search through personal recipes if no cuisine recipes found
                     if (!foundRecipe) {
-                        searchPersonalRecipes(lowerCaseQuery)
+                        searchPersonalRecipes(query)
                     }
+
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
@@ -86,6 +99,8 @@ class SelectMealFragment : Fragment() {
                 }
             })
     }
+
+
 
     private fun searchPersonalRecipes(query: String) {
         resultsLayout.removeAllViews() // Clear previous results
@@ -105,9 +120,15 @@ class SelectMealFragment : Fragment() {
                         // Check if the recipe name contains the search query
                         if (recipeName?.contains(lowerCaseQuery) == true) {
                             foundRecipe = true
+
+                            // Extract ingredients from the recipe
+                            val ingredientsList = recipeSnapshot.child("ingredients").children.mapNotNull {
+                                it.getValue(String::class.java)
+                            }
+
                             // Ensure key is not null before passing it
                             if (recipeSnapshot.key != null) {
-                                createRecipeTextView(recipeName, recipeSnapshot.key!!)
+                                createRecipeTextView(recipeName, ingredientsList) // Pass the recipe name and ingredients
                             } else {
                                 Log.d("Debug", "Recipe snapshot key is null")
                             }
@@ -125,23 +146,34 @@ class SelectMealFragment : Fragment() {
             })
     }
 
-    private fun createRecipeTextView(recipeName: String, recipeId: String) {
+
+    private fun createRecipeTextView(recipeName: String, ingredients: List<String>) {
         val capitalizedRecipeName = capitalizeWords(recipeName) // Capitalize each word
         val textView = TextView(requireContext()).apply {
-            text = capitalizedRecipeName // Use the capitalized recipe name
+            text = capitalizedRecipeName
             textSize = 18f
             setTextColor(resources.getColor(android.R.color.white))
             setPadding(16, 16, 16, 16)
-            setOnClickListener { saveMealPlan(capitalizedRecipeName) } // Pass the capitalized recipe name to saveMealPlan
+            setOnClickListener { saveMealPlan(capitalizedRecipeName, ingredients) } // Save ingredients
         }
         resultsLayout.addView(textView)
     }
 
-    private fun saveMealPlan(recipeName: String) {
+
+
+    private fun saveMealPlan(recipeName: String, ingredients: List<String>) {
         val mealPath = "Users/$userId/MealPlan/$day"
         val capitalizedRecipeName = capitalizeWords(recipeName) // Capitalize each word before saving
-        // Save the recipe name for the selected day and meal type
-        FirebaseDatabase.getInstance().reference.child(mealPath).child(mealType ?: "").setValue(capitalizedRecipeName)
+
+        // Create a map to store the recipe ingredients
+        val recipeData = hashMapOf<String, Any>(
+            "ingredients" to ingredients
+        )
+
+        // Save the recipe name and ingredients for the selected day and meal type
+        FirebaseDatabase.getInstance().reference.child(mealPath).child(mealType ?: "")
+            .child(capitalizedRecipeName)
+            .setValue(recipeData)
             .addOnSuccessListener {
                 Toast.makeText(requireContext(), "$capitalizedRecipeName saved for $day $mealType", Toast.LENGTH_SHORT).show()
                 navigateBackToMealPlanDays()
@@ -150,6 +182,7 @@ class SelectMealFragment : Fragment() {
                 Toast.makeText(requireContext(), "Failed to save: ${error.message}", Toast.LENGTH_SHORT).show()
             }
     }
+
 
     private fun navigateBackToMealPlanDays() {
         val fragment = MealPlanDaysFragment().apply {
@@ -192,9 +225,16 @@ class SelectMealFragment : Fragment() {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     if (dataSnapshot.exists()) {
                         for (recipeSnapshot in dataSnapshot.children) {
-                            // Ensure key is not null before passing it
-                            if (recipeSnapshot.key != null) {
-                                createRecipeTextView(recipeSnapshot.key!!, recipeSnapshot.key!!)
+                            // Ensure the recipe key is not null
+                            val recipeName = recipeSnapshot.key
+                            if (recipeName != null) {
+                                // Extract ingredients from the recipe
+                                val ingredientsList = recipeSnapshot.child("ingredients").children.mapNotNull {
+                                    it.getValue(String::class.java)
+                                }
+
+                                // Create the recipe text view with the recipe name and ingredients
+                                createRecipeTextView(recipeName, ingredientsList)
                             } else {
                                 Log.d("Debug", "Recipe snapshot key is null")
                             }

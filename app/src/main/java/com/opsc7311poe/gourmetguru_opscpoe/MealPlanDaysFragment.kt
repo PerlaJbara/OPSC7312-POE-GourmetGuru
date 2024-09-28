@@ -69,15 +69,43 @@ class MealPlanDaysFragment : Fragment() {
         FirebaseDatabase.getInstance().reference.child(mealPlanPath)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    txtSelBreakfast.text = dataSnapshot.child("breakfast").getValue(String::class.java) ?: "No Breakfast selected"
-                    txtSelLunch.text = dataSnapshot.child("lunch").getValue(String::class.java) ?: "No Lunch selected"
-                    txtSelDinner.text = dataSnapshot.child("dinner").getValue(String::class.java) ?: "No Dinner selected"
+                    // Handle breakfast meal
+                    val breakfastSnapshot = dataSnapshot.child("breakfast")
+                    txtSelBreakfast.text = fetchMealWithIngredients(breakfastSnapshot) ?: "No Breakfast selected"
+
+                    // Handle lunch meal
+                    val lunchSnapshot = dataSnapshot.child("lunch")
+                    txtSelLunch.text = fetchMealWithIngredients(lunchSnapshot) ?: "No Lunch selected"
+
+                    // Handle dinner meal
+                    val dinnerSnapshot = dataSnapshot.child("dinner")
+                    txtSelDinner.text = fetchMealWithIngredients(dinnerSnapshot) ?: "No Dinner selected"
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
                     Toast.makeText(requireContext(), "Error fetching meals: ${databaseError.message}", Toast.LENGTH_SHORT).show()
                 }
             })
+    }
+
+    /**
+     * Helper function to retrieve the meal name and ingredients if they exist.
+     */
+    private fun fetchMealWithIngredients(snapshot: DataSnapshot): String? {
+        if (!snapshot.exists() || !snapshot.hasChildren()) {
+            return null
+        }
+
+        // Get the first child of the snapshot, which is the recipe name (e.g., "Coq Au Vin")
+        val recipeSnapshot = snapshot.children.firstOrNull()
+        if (recipeSnapshot != null && recipeSnapshot.key != null) {
+            val recipeName = recipeSnapshot.key
+            val ingredients = recipeSnapshot.child("ingredients").children.mapNotNull { it.getValue(String::class.java) }
+
+            // Optionally, display both recipe name and ingredients if needed
+            return "$recipeName"
+        }
+        return null
     }
 
     private fun navigateToSelectMealFragment(mealType: String) {

@@ -5,13 +5,15 @@ import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 
 class MealPlanFragment : Fragment() {
 
     private lateinit var dayTextViews: List<TextView>
-
+    private lateinit var ivShoppingBag: ImageView
+    private lateinit var txtShoppingBag: TextView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,6 +29,17 @@ class MealPlanFragment : Fragment() {
             view.findViewById(R.id.txtSat),
             view.findViewById(R.id.txtSun)
         )
+
+        ivShoppingBag = view.findViewById(R.id.ivShoppingBag)
+        txtShoppingBag = view.findViewById(R.id.txtViewShoppingList)
+
+        ivShoppingBag.setOnClickListener(){
+            replaceFragment(ShoppingFragment())
+        }
+
+        txtShoppingBag.setOnClickListener(){
+            replaceFragment(ShoppingFragment())
+        }
 
         dayTextViews.forEachIndexed { index, textView ->
             textView.setOnClickListener {

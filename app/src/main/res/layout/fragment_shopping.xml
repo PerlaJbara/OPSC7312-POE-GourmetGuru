@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ggRed">
+    android:background="@color/ggRed"
+    tools:context=".ShoppingFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,67 +66,65 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/txtShop"
+        <LinearLayout
+            android:paddingTop="12dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:fontFamily="@font/lora"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:textSize="35dp"
-            android:text="Shopping List:" />
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/txtFilterBy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lora"
+                android:text="Filter By:"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginEnd="16dp" />
+
+            <Button
+                android:id="@+id/btnFilterByDay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/black"
+                android:padding="8dp"
+                android:text="Day of the Week"
+                android:textColor="@android:color/white"
+                android:textSize="13sp" />
+
+            <Button
+                android:id="@+id/btnAlphabeticalOrder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/black"
+                android:padding="8dp"
+                android:text="Alphabetical Order"
+                android:textColor="@android:color/white"
+                android:textSize="13sp" />
+        </LinearLayout>
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <LinearLayout
+                android:id="@+id/resultsLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
 
-                <TextView
-                    android:id="@+id/txtItem1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Item1"
-                    android:layout_marginHorizontal="25dp"
-                    android:layout_marginVertical="10dp"
-                    android:textColor="@android:color/white"
-                    android:fontFamily="@font/lora"
-                    android:textStyle="bold"
-                    android:textSize="24dp" />
-
-                <TextView
-                    android:id="@+id/txtItem2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Item2"
-                    android:layout_marginHorizontal="25dp"
-                    android:layout_marginVertical="10dp"
-                    android:textColor="@android:color/white"
-                    android:fontFamily="@font/lora"
-                    android:textStyle="bold"
-                    android:textSize="24dp" />
-
-                <TextView
-                    android:id="@+id/txtItem3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Item3"
-                    android:layout_marginHorizontal="25dp"
-                    android:layout_marginVertical="10dp"
-                    android:textColor="@android:color/white"
-                    android:fontFamily="@font/lora"
-                    android:textStyle="bold"
-                    android:textSize="24dp" />
-
+                <!-- Content for search results goes here -->
 
             </LinearLayout>
         </ScrollView>
 
     </LinearLayout>
-
 
 </FrameLayout>

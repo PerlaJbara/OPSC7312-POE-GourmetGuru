@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ggRed">
+    android:background="@color/ggRed"
+    tools:context=".MealPlanFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -55,9 +56,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -149,28 +148,45 @@
                     android:textSize="24dp" />
 
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:paddingTop="50dp">
+                    android:layout_height="match_parent">
 
-                    <TextView
-                        android:id="@+id/txtChooseYourMeals"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:id="@+id/linearLayout3"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="25dp"
-                        android:layout_marginVertical="10dp"
-                        android:fontFamily="@font/lora"
-                        android:text="Click to view your shopping list!"
-                        android:textColor="@android:color/white"
-                        android:textSize="12dp"
-                        android:textStyle="bold"
-                        tools:ignore="TextSizeCheck" />
-                </LinearLayout>
+                        android:orientation="horizontal"
+                        android:paddingTop="40dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/ivShoppingBag"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:paddingStart="68dp"
+                            app:srcCompat="@drawable/vector_shoppingbag" />
+
+                        <TextView
+                            android:id="@+id/txtViewShoppingList"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/lora"
+                            android:paddingTop="13dp"
+                            android:paddingEnd="100dp"
+                            android:text="Click to view your shopping list!"
+                            android:textColor="@android:color/white"
+                            android:textSize="19sp"
+                            android:textStyle="bold"
+                            tools:ignore="TextSizeCheck" />
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             </LinearLayout>
-        </ScrollView>
 
     </LinearLayout>
 
