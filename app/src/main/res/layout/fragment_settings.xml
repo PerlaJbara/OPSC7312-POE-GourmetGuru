@@ -22,9 +22,19 @@
             android:scaleType="centerCrop"
             android:src="@drawable/headerphoto" />
 
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#40000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="243dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/cherry_swash_bold"
@@ -35,12 +45,14 @@
             android:textSize="60sp"
             android:textStyle="bold" />
 
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="58dp"
             android:layout_height="48dp"
-            android:src="@drawable/vectorbackbutton"
-            android:layout_gravity="start" />
+            android:layout_gravity="start"
+            android:src="@drawable/vectorbackarrowwhite" />
+
     </FrameLayout>
 
     <!-- LinearLayout for the text views -->
