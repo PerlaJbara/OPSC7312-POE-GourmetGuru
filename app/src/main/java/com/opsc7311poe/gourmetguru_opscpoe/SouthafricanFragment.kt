@@ -1,5 +1,6 @@
 package com.opsc7311poe.gourmetguru_opscpoe
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.opsc7311poe.gourmetguru_opscpoe.adapters.RecipeAdapter
 import com.opsc7311poe.gourmetguru_opscpoe.models.ApiRecipeData
 import com.opsc7311poe.gourmetguru_opscpoe.network.ApiClient
@@ -60,13 +62,14 @@ private lateinit var btnBack: ImageView
     }
 
 
-    private fun fetchSouthAfricanRecipes() {
+    private fun fetchSouthAfricanRecipes(page: Int = 1, pageSize: Int = 10) {
         val apiService = ApiClient.createService(RecipesApiService::class.java)
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val recipeNames = apiService.getRecipesByCuisine("South African")
                 val recipesWithImages = mutableListOf<ApiRecipeData>()
+
 
                 // Iterate through each recipe name and fetch the image URL
                 for (recipeName in recipeNames) {
@@ -82,6 +85,8 @@ private lateinit var btnBack: ImageView
                 withContext(Dispatchers.Main) {
                     recipeAdapter.updateData(recipesWithImages)
                 }
+
+
             } catch (e: Exception) {
                 Log.e("SouthafricanFragment", "Error fetching recipes", e)
             }
@@ -98,6 +103,7 @@ private lateinit var btnBack: ImageView
         }
         replaceFragment(recipeDetailsFragment)
     }
+
 
 
     private fun replaceFragment(fragment: Fragment) {

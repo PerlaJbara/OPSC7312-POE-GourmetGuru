@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("androidx.navigation.safeargs.kotlin")
     id("com.google.gms.google-services")
+    id("kotlin-kapt")
 }
 
 android {
@@ -71,9 +72,10 @@ dependencies {
     implementation  ("com.google.android.gms:play-services-auth:20.5.0")
     implementation  ("com.google.firebase:firebase-auth:22.1.1")
     implementation ("com.github.bumptech.glide:glide:4.12.0")
-    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
-    implementation(libs.glide)
-    annotationProcessor(libs.glideCompiler)
+    //annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+    kapt("com.github.bumptech.glide:compiler:4.12.0")
+    //implementation(libs.glide)
+    //annotationProcessor(libs.glideCompiler)
     testImplementation(libs.junit)
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.mockito:mockito-core:4.3.1")
