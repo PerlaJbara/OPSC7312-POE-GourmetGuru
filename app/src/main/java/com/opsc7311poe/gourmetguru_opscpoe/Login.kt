@@ -168,7 +168,7 @@ class Login : AppCompatActivity() {
         builder.show()
     }
 
-    private fun validateLogin(email: String, password: String): Boolean {
+    fun validateLogin(email: String, password: String): Boolean {
         if (TextUtils.isEmpty(email)) {
             txtREmail.error = "Email is required."
             return false

@@ -43,3 +43,5 @@ navigation-safe-args-plugin = { module = "androidx.navigation:navigation-safe-ar
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
+
+
