@@ -166,8 +166,7 @@
                             android:id="@+id/ivShoppingBag"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:layout_weight="1"
-                            android:paddingStart="68dp"
+                            android:layout_marginTop="15dp"
                             app:srcCompat="@drawable/vector_shoppingbag" />
 
                         <TextView
