@@ -114,7 +114,8 @@ class SelectMealFragment : Fragment() {
 
                     // Iterate through the user's recipes
                     for (recipeSnapshot in dataSnapshot.children) {
-                        val recipeName = recipeSnapshot.child("name").getValue(String::class.java)?.lowercase()?.trim() // Trim and convert to lowercase
+                        // Retrieve the recipe name directly from the snapshot
+                        val recipeName = recipeSnapshot.child("name").getValue(String::class.java)?.lowercase()?.trim()
                         Log.d("RecipeSearch", "Recipe found: $recipeName") // Log retrieved recipe names
 
                         // Check if the recipe name contains the search query
@@ -122,15 +123,17 @@ class SelectMealFragment : Fragment() {
                             foundRecipe = true
 
                             // Extract ingredients from the recipe
-                            val ingredientsList = recipeSnapshot.child("ingredients").children.mapNotNull {
-                                it.getValue(String::class.java)
+                            val ingredientsList = recipeSnapshot.child("ingredients").children.mapNotNull { ingredientSnapshot ->
+                                val ingredientName = ingredientSnapshot.child("name").getValue(String::class.java)
+                                val ingredientAmount = ingredientSnapshot.child("amount").getValue(String::class.java)
+                                if (ingredientName != null && ingredientAmount != null) "$ingredientAmount $ingredientName" else null
                             }
 
-                            // Ensure key is not null before passing it
-                            if (recipeSnapshot.key != null) {
-                                createRecipeTextView(recipeName, ingredientsList) // Pass the recipe name and ingredients
+                            // Create the recipe text view if a valid recipe name is found
+                            if (recipeName.isNotEmpty()) {
+                                createRecipeTextView(recipeName, ingredientsList)
                             } else {
-                                Log.d("Debug", "Recipe snapshot key is null")
+                                Log.d("Debug", "Recipe snapshot name is empty or null")
                             }
                         }
                     }
@@ -145,6 +148,7 @@ class SelectMealFragment : Fragment() {
                 }
             })
     }
+
 
 
     private fun createRecipeTextView(recipeName: String, ingredients: List<String>) {
@@ -162,7 +166,7 @@ class SelectMealFragment : Fragment() {
 
 
     private fun saveMealPlan(recipeName: String, ingredients: List<String>) {
-        val mealPath = "Users/$userId/MealPlan/$day"
+        val mealPath = "Users/$userId/MealPlan/$day/${mealType ?: ""}"
         val capitalizedRecipeName = capitalizeWords(recipeName) // Capitalize each word before saving
 
         // Create a map to store the recipe ingredients
@@ -170,9 +174,13 @@ class SelectMealFragment : Fragment() {
             "ingredients" to ingredients
         )
 
+        // Before saving, remove any existing meal for the selected day and meal type
+        val mealReference = FirebaseDatabase.getInstance().reference.child(mealPath)
+
+        mealReference.setValue(null) // This will clear any previous recipe for the same day and meal type
+
         // Save the recipe name and ingredients for the selected day and meal type
-        FirebaseDatabase.getInstance().reference.child(mealPath).child(mealType ?: "")
-            .child(capitalizedRecipeName)
+        mealReference.child(capitalizedRecipeName)
             .setValue(recipeData)
             .addOnSuccessListener {
                 Toast.makeText(requireContext(), "$capitalizedRecipeName saved for $day $mealType", Toast.LENGTH_SHORT).show()
@@ -182,6 +190,7 @@ class SelectMealFragment : Fragment() {
                 Toast.makeText(requireContext(), "Failed to save: ${error.message}", Toast.LENGTH_SHORT).show()
             }
     }
+
 
 
     private fun navigateBackToMealPlanDays() {
