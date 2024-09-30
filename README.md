@@ -98,7 +98,7 @@ Gourmet Guru aims to provide an innovative Android application (app) designed to
 
 # Demonstration Videos Links
 
-**Features Demonstration Video** - [Click Here for Features Demonstration Video]()
+**Features Demonstration Video** - [Click Here for Features Demonstration Video](https://youtu.be/gaOg3ixeZA8)
 
 **Technical Demonstration Video** - [Click Here for Technical Demonstration Video]()
 
