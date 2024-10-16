@@ -2,8 +2,6 @@ package com.opsc7311poe.gourmetguru_opscpoe
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
-import android.view.HapticFeedbackConstants
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,17 +12,30 @@ import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
+import android.content.Context
+import androidx.biometric.BiometricManager
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import java.util.concurrent.Executor
 
 class ViewYourRecipesFrgament : Fragment() {
+
     private lateinit var btnBack: ImageView
     private lateinit var svAllRec: ScrollView
     private lateinit var linlayAllRec: LinearLayout
+
+    // Biometric authentication variables
+    private lateinit var executor: Executor
+    private lateinit var biometricPrompt: BiometricPrompt
+    private lateinit var promptInfo: BiometricPrompt.PromptInfo
+    private var currentRecipeKey: String? = null  // To store the current recipe key to open after auth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,61 +43,80 @@ class ViewYourRecipesFrgament : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_view_your_recipes_frgament, container, false)
 
-        //back button functionality
+        // Back button functionality
         btnBack = view.findViewById(R.id.btnBack)
-        btnBack.setOnClickListener{
+        btnBack.setOnClickListener {
             replaceFragment(MyRecipesFragment())
         }
 
-        //fetching recipes saved in db and displaying names in textview
+        // ScrollView and LinearLayout for displaying recipes
         svAllRec = view.findViewById(R.id.svAllRecipes)
         linlayAllRec = view.findViewById(R.id.linlayRecipes)
 
-        val userId = FirebaseAuth.getInstance().currentUser?.uid
-        if (userId != null)
-        {
-            val database = Firebase.database
+        // Initialize biometric prompt and dialog
+        executor = ContextCompat.getMainExecutor(requireContext())
+        biometricPrompt = BiometricPrompt(this, executor, object : BiometricPrompt.AuthenticationCallback() {
+            override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                super.onAuthenticationSucceeded(result)
+                Toast.makeText(requireContext(), "Authentication succeeded!", Toast.LENGTH_SHORT).show()
+                // If authentication succeeds, open the locked recipe
+                currentRecipeKey?.let { openRecipe(it) }
+            }
 
+            override fun onAuthenticationFailed() {
+                super.onAuthenticationFailed()
+                Toast.makeText(requireContext(), "Authentication failed", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        promptInfo = BiometricPrompt.PromptInfo.Builder()
+            .setTitle("Biometric authentication required")
+            .setSubtitle("Use your fingerprint or face to access this recipe")
+            .setNegativeButtonText("Cancel")
+            .build()
+
+        // Fetch and display recipes
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        if (userId != null) {
+            val database = Firebase.database
             val recRef = database.getReference("Users").child(userId).child("Recipes")
 
-            recRef.addValueEventListener(object: ValueEventListener
-            {
+            recRef.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     linlayAllRec.removeAllViews()
 
-                    for(pulledOrder in snapshot.children)
-                    {
-                        val recName : String? = pulledOrder.child("name").getValue(String::class.java)
-                        if (recName != null)
-                        {
-                            //adding text view with recipe name
-                            val textView = TextView(requireContext())
+                    for (pulledOrder in snapshot.children) {
+                        val recName: String? = pulledOrder.child("name").getValue(String::class.java)
+                        val isLocked: Boolean = pulledOrder.child("locked").getValue(Boolean::class.java) ?: false
 
+                        if (recName != null) {
+                            // Create TextView for each recipe
+                            val textView = TextView(requireContext())
                             textView.text = recName
                             textView.textSize = 20f
                             textView.setTextColor(Color.parseColor("#FFFFFF"))
                             textView.typeface = ResourcesCompat.getFont(requireContext(), R.font.lora)
                             textView.height = 100
-                            //when recipe name is tapped the project name is logged and the user is taken to project details page
+
+                            // Click listener for each recipe
                             textView.setOnClickListener {
-                                val viewSelectedRecipeFrag = ViewSelectedRecipeFragment()
-                                //transferring recipe info using a bundle
-                                val bundle = Bundle()
-                                bundle.putString("recipeID", pulledOrder.key)
-                                viewSelectedRecipeFrag.arguments = bundle
-                                //changing to recipe info fragment
-                                it.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                                replaceFragment(viewSelectedRecipeFrag)
+                                if (isLocked) {
+                                    // Store the recipe key and trigger biometric authentication
+                                    currentRecipeKey = pulledOrder.key
+                                    biometricPrompt.authenticate(promptInfo)
+                                } else {
+                                    // If recipe is not locked, open it directly
+                                    openRecipe(pulledOrder.key)
+                                }
                             }
 
                             linlayAllRec.addView(textView)
                         }
-
                     }
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(requireContext(), "Error reading from the database: " + error.toString(), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Error reading from the database: $error", Toast.LENGTH_SHORT).show()
                 }
             })
         }
@@ -94,8 +124,17 @@ class ViewYourRecipesFrgament : Fragment() {
         return view
     }
 
+
+    private fun openRecipe(recipeID: String?) {
+        val viewSelectedRecipeFrag = ViewSelectedRecipeFragment()
+        val bundle = Bundle()
+        bundle.putString("recipeID", recipeID)
+        viewSelectedRecipeFrag.arguments = bundle
+        replaceFragment(viewSelectedRecipeFrag)
+    }
+
+
     private fun replaceFragment(fragment: Fragment) {
-        Log.d("ServicesFragment", "Replacing fragment: ${fragment::class.java.simpleName}")
         parentFragmentManager.beginTransaction()
             .replace(R.id.frame_container, fragment)
             .addToBackStack(null)

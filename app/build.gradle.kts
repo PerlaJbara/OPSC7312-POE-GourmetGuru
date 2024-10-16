@@ -82,6 +82,7 @@ dependencies {
     testImplementation("androidx.test.ext:junit:1.1.3")
     testImplementation("androidx.test:core:1.5.0")
     testImplementation("org.mockito:mockito-inline:4.3.1")
+    implementation ("androidx.biometric:biometric:1.2.0-alpha03")
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.picasso)
