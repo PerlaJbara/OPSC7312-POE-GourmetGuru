@@ -19,6 +19,9 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.time.Duration
 import java.util.Locale
 
@@ -149,11 +152,7 @@ class AddYourRecipeFregment : Fragment() {
                 recipeEntered.durationHrs = txtDurationHrs.text.toString().toDouble()
                 recipeEntered.durationMins = txtDurationMins.text.toString().toDouble()
 
-
-                //saving recipe locally incase user is offline in RoomDB
-                // TODO: offline functionality 
-
-                //checking if user is online, if so push data to DB
+                //checking if user is online, if so push data to Firebase, else save locally
                 if (isOnline(requireContext())) {
 
                     //pushing recipe data to DB
@@ -175,6 +174,27 @@ class AddYourRecipeFregment : Fragment() {
                     //go back to service landing page
                     it.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
                     replaceFragment(MyRecipesFragment())
+                }
+                else{
+                    //saving recipe locally
+                    //getting instance of DB
+                    val db = RecipeDatabase.getInstance(requireContext())
+                    val recipeDao = db.recipeDao()
+                    CoroutineScope(Dispatchers.IO).launch {
+                        //generate an id to use for local db
+                        recipeDao.insertRecipe(recipeEntered)
+                        //display message to user that theyre offline and recipe is save offline
+                        CoroutineScope(Dispatchers.Main).launch {
+                            Toast.makeText(
+                                requireContext(),
+                                "You are currently offline. Don't worry your recipe will be saved when you return online :)",
+                                Toast.LENGTH_LONG
+                            ).show()
+                            //go back to service landing page
+                            it.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                            replaceFragment(MyRecipesFragment())
+                        }
+                    }
                 }
             }
         }
