@@ -82,6 +82,7 @@
         <!-- EditText for Password Input -->
         <EditText
             android:id="@+id/edtconfirmpass"
+            android:inputType="textPassword"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"

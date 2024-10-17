@@ -191,7 +191,7 @@
                             android:layout_width="320dp"
                             android:layout_height="50dp"
                             android:background="@drawable/textboxdesign"
-                            android:inputType="text"
+                            android:inputType="textPassword"
                             android:textColor="@color/black"
                             android:layout_marginLeft="20dp"
                             android:hint="Password:"/>
