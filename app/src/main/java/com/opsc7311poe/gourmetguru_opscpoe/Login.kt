@@ -12,7 +12,7 @@ import com.google.android.gms.auth.api.signin.*
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.common.api.CommonStatusCodes
-import com.google.android.gms.common.api.Status
+import com.google.firebase.database.FirebaseDatabase
 
 class Login : AppCompatActivity() {
 
@@ -120,9 +120,22 @@ class Login : AppCompatActivity() {
         mAuth.signInWithCredential(credential).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
                 val isNewUser = task.result?.additionalUserInfo?.isNewUser ?: false
+                val user = mAuth.currentUser
                 if (isNewUser) {
                     // Show password setup dialog
                     showPasswordDialog()
+
+                    //get and store user info
+                    val email = user?.email
+
+                    //getting name and surname
+                    val displayName = user?.displayName
+                    val nameParts = displayName?.split(" ")
+                    val fName = nameParts?.getOrNull(0) ?: ""
+                    val surname = nameParts?.getOrNull(1) ?: ""
+
+                    storeGoogleUserData(email, fName, surname)
+
                 } else {
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
@@ -132,6 +145,22 @@ class Login : AppCompatActivity() {
                 Toast.makeText(this, "SSO login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun storeGoogleUserData(email: String?, fName: String?, surname: String?) {
+        val userId = mAuth.currentUser?.uid
+        if (userId != null) {
+            val database = FirebaseDatabase.getInstance().getReference("Users").child(userId)
+            val userMap = hashMapOf<String, String>(
+                "name" to fName!!,
+                "surname" to surname!!,
+                "email" to email!!
+            )
+            database.setValue(userMap).addOnCompleteListener { dbTask ->
+                if (dbTask.isSuccessful) { } else { }
+            }
+        }
+
     }
 
     private fun showPasswordDialog() {
