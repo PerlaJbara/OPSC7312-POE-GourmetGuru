@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
 
@@ -18,7 +19,7 @@ class Settings : Fragment() {
     private lateinit var btnChangePassword: TextView
     private lateinit var btnDeleteAccount: TextView
     private lateinit var btnChangeLang: TextView
-    private lateinit var btnBack: TextView
+    private lateinit var btnBack: ImageView
     private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +46,12 @@ class Settings : Fragment() {
 
         }
 
+        //back button functionality
+        btnBack =  view.findViewById(R.id.btnBack)
+        btnBack.setOnClickListener(){
+            replaceFragment(MyProfileFragment())
+        }
+
         //handling change password button
         btnChangePassword = view.findViewById(R.id.txtchangepass)
 
@@ -61,7 +68,11 @@ class Settings : Fragment() {
         }
 
         //handling change language button
+        btnChangeLang = view.findViewById(R.id.txtchangelang)
 
+        btnChangeLang.setOnClickListener(){
+            replaceFragment(ChangeLanguageFragment())
+        }
 
 
         return view

@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name">GourmetGuru-OPSCPOE</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="default_web_client_id">381636906301-rtmeb4afv74tk7lrlntak3651jc1e4c0.apps.googleusercontent.com</string>
+
+    <!--for change language page-->
+    <string name="changeLangFragHeading">Change Language</string>
+    <string name="txtSelect_a_language">Select a Language</string>
+    <string name="btnSave">Save</string>
+    <string name="spinEnglishOption">English</string>
+    <string name="spinAfrikaansOption">Afrikaans</string>
 </resources>

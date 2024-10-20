@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--for change language page-->
+    <string name="changeLangFragHeading">Taal Verander</string>
+    <string name="txtSelect_a_language">Kies \'n taal</string>
+    <string name="btnSave">Stoor</string>
+    <string name="spinEnglishOption">Engels</string>
+    <string name="spinAfrikaansOption">Afrikaans</string>
+</resources>
