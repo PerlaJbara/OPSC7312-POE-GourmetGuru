@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cherry_swash_bold"
                 android:paddingBottom="18dp"
-                android:text="Registration"
+                android:text="@string/registrationHeading"
                 android:textAlignment="center"
                 android:textColor="@color/ggRed"
                 android:textSize="60sp"
@@ -70,7 +70,7 @@
                             android:layout_weight="1"
                             android:fontFamily="@font/lora"
                             android:paddingLeft="25dp"
-                            android:text="Name:"
+                            android:text="@string/txtName"
                             android:textColor="@color/ggRed"
                             android:textSize="28sp" />
 
@@ -90,7 +90,7 @@
                             android:inputType="text"
                             android:textColor="@color/black"
                             android:layout_marginLeft="20dp"
-                            android:hint="First Name:"/>
+                            android:hint="@string/txtFirst_name"/>
 
                     </LinearLayout>
 
@@ -105,7 +105,7 @@
                             android:layout_weight="1"
                             android:fontFamily="@font/lora"
                             android:paddingLeft="25dp"
-                            android:text="Surname:"
+                            android:text="@string/txtSurname"
                             android:textColor="@color/ggRed"
                             android:textSize="28sp"
                             />
@@ -127,7 +127,7 @@
                             android:paddingRight="20dp"
                             android:textColor="@color/black"
                             android:layout_marginLeft="20dp"
-                            android:hint="Surname:"/>
+                            android:hint="@string/txtSurname"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -141,7 +141,7 @@
                             android:layout_weight="1"
                             android:fontFamily="@font/lora"
                             android:paddingLeft="25dp"
-                            android:text="Email:"
+                            android:text="@string/txtEmail"
                             android:textColor="@color/ggRed"
                             android:textSize="28sp" />
 
@@ -161,7 +161,7 @@
                             android:paddingRight="20dp"
                             android:textColor="@color/black"
                             android:layout_marginLeft="20dp"
-                            android:hint="Email:"/>
+                            android:hint="@string/txtEmail"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -174,7 +174,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/lora"
                             android:paddingLeft="25dp"
-                            android:text="Password:"
+                            android:text="@string/txtPassword"
                             android:textColor="@color/ggRed"
                             android:textSize="28sp" />
 
@@ -194,7 +194,7 @@
                             android:inputType="textPassword"
                             android:textColor="@color/black"
                             android:layout_marginLeft="20dp"
-                            android:hint="Password:"/>
+                            android:hint="@string/txtPassword"/>
 
                     </LinearLayout>
 
@@ -213,7 +213,7 @@
                             android:backgroundTint="@color/ggRed"
                             android:fontFamily="@font/lemon"
                             android:gravity="center"
-                            android:text="Register"
+                            android:text="@string/txtRegister"
                             android:textAlignment="center"
                             android:textColor="@color/white" />
 

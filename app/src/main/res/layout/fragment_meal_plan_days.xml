@@ -43,10 +43,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cherry_swash_bold"
-                android:text="Meal Plan"
+                android:text="@string/txtMeal_plan"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
-                android:textSize="60dp"
+                android:textSize="60sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -73,8 +73,8 @@
             android:fontFamily="@font/lora"
             android:textStyle="bold"
             android:textColor="@android:color/white"
-            android:textSize="35dp"
-            android:text="Monday" />
+            android:textSize="35sp"
+            android:text="@string/txtMonday" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -92,22 +92,22 @@
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginVertical="10dp"
                     android:fontFamily="@font/lora"
-                    android:text="Please choose your meals:"
+                    android:text="@string/txtPlease_choose_your_meals"
                     android:textColor="@android:color/white"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtBreak"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Breakfast"
+                    android:text="@string/txtBreakfast"
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginVertical="10dp"
                     android:textColor="@android:color/white"
                     android:fontFamily="@font/lora"
                     android:textStyle="bold"
-                    android:textSize="24dp" />
+                    android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/txtBreakfastSelected"
@@ -117,20 +117,20 @@
                     android:textColor="@android:color/white"
                     android:fontFamily="@font/lora"
                     android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:text="No breakfast has been selected yet."/>
+                    android:textSize="15sp"
+                    android:text="@string/no_breakfast_has_been_selected_yet"/>
 
                 <TextView
                     android:id="@+id/txtLunch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Lunch"
+                    android:text="@string/lunch"
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginVertical="10dp"
                     android:textColor="@android:color/white"
                     android:fontFamily="@font/lora"
                     android:textStyle="bold"
-                    android:textSize="24dp" />
+                    android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/txtLunchSelected"
@@ -140,20 +140,20 @@
                     android:textColor="@android:color/white"
                     android:fontFamily="@font/lora"
                     android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:text="No lunch has been selected yet."/>
+                    android:textSize="15sp"
+                    android:text="@string/no_lunch_has_been_selected_yet"/>
 
                 <TextView
                     android:id="@+id/txtDinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Dinner"
+                    android:text="@string/dinner"
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginVertical="10dp"
                     android:textColor="@android:color/white"
                     android:fontFamily="@font/lora"
                     android:textStyle="bold"
-                    android:textSize="24dp" />
+                    android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/txtDinnerSelected"
@@ -163,8 +163,8 @@
                     android:textColor="@android:color/white"
                     android:fontFamily="@font/lora"
                     android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:text="No dinner has been selected yet."/>
+                    android:textSize="15sp"
+                    android:text="@string/no_dinner_has_been_selected_yet"/>
 
 
             </LinearLayout>

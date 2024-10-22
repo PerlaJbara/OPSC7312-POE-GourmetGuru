@@ -44,10 +44,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cherry_swash_bold"
-                android:text="Meal Plan"
+                android:text="@string/txtMeal_plan"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
-                android:textSize="60dp"
+                android:textSize="60sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -67,19 +67,19 @@
                     android:id="@+id/txtMon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Monday"
+                    android:text="@string/txtMonday"
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginVertical="10dp"
                     android:textColor="@android:color/white"
                     android:fontFamily="@font/lora"
                     android:textStyle="bold"
-                    android:textSize="24dp" />
+                    android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/txtTues"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tuesday"
+                    android:text="@string/txtTuesday"
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginVertical="10dp"
                     android:textColor="@android:color/white"
@@ -91,61 +91,61 @@
                     android:id="@+id/txtWed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Wednesday"
+                    android:text="@string/txtWednesday"
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginVertical="10dp"
                     android:textColor="@android:color/white"
                     android:fontFamily="@font/lora"
                     android:textStyle="bold"
-                    android:textSize="24dp" />
+                    android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/txtThur"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Thursday"
+                    android:text="@string/ttxThursday"
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginVertical="10dp"
                     android:textColor="@android:color/white"
                     android:fontFamily="@font/lora"
                     android:textStyle="bold"
-                    android:textSize="24dp" />
+                    android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/txtFri"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Friday"
+                    android:text="@string/txtFriday"
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginVertical="10dp"
                     android:textColor="@android:color/white"
                     android:fontFamily="@font/lora"
                     android:textStyle="bold"
-                    android:textSize="24dp" />
+                    android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/txtSat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Saturday"
+                    android:text="@string/txtSaturday"
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginVertical="10dp"
                     android:textColor="@android:color/white"
                     android:fontFamily="@font/lora"
                     android:textStyle="bold"
-                    android:textSize="24dp" />
+                    android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/txtSun"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Sunday"
+                    android:text="@string/txtSunday"
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginVertical="10dp"
                     android:textColor="@android:color/white"
                     android:fontFamily="@font/lora"
                     android:textStyle="bold"
-                    android:textSize="24dp" />
+                    android:textSize="24sp" />
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -176,7 +176,7 @@
                             android:fontFamily="@font/lora"
                             android:paddingTop="13dp"
                             android:paddingEnd="100dp"
-                            android:text="Click to view your shopping list!"
+                            android:text="@string/txtClick_to_view_your_shopping_list"
                             android:textColor="@android:color/white"
                             android:textSize="19sp"
                             android:textStyle="bold"

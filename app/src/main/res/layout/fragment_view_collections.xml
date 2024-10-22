@@ -44,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cherry_swash_bold"
-                android:text="View Collections"
+                android:text="@string/view_collections"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
                 android:textSize="60dp"

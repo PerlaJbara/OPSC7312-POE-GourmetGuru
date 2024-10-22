@@ -44,10 +44,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cherry_swash_bold"
-                android:text="Search Recipe"
+                android:text="@string/search_recipeHeading"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
-                android:textSize="60dp"
+                android:textSize="60sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -115,8 +115,8 @@
                     android:backgroundTint="@color/black"
                     android:fontFamily="@font/lora"
                     android:paddingVertical="10dp"
-                    android:text="Search"
-                    android:textSize="20dp"
+                    android:text="@string/txtSearch"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -130,8 +130,8 @@
                     android:fontFamily="@font/lora"
                     android:paddingHorizontal="30dp"
                     android:paddingVertical="10dp"
-                    android:text="Filter"
-                    android:textSize="20dp"
+                    android:text="@string/btnFilter"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -144,9 +144,9 @@
                 android:layout_marginHorizontal="25dp"
                 android:layout_marginVertical="10dp"
                 android:fontFamily="@font/lora"
-                android:text="Results: "
+                android:text="@string/txtResults"
                 android:textColor="@android:color/white"
-                android:textSize="24dp"
+                android:textSize="24sp"
                 android:textStyle="bold" />
 
             <ScrollView

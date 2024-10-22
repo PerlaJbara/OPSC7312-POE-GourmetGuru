@@ -40,7 +40,7 @@
             android:layout_gravity="center"
             android:fontFamily="@font/cherry_swash_bold"
             android:paddingBottom="30dp"
-            android:text="My\nProfile"
+            android:text="@string/myprofileHeading"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="60sp"
@@ -105,7 +105,7 @@
                 android:id="@+id/txtname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name:"
+                android:text="@string/txtName"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -132,7 +132,7 @@
                 android:id="@+id/txtEmailHeading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Email:"
+                android:text="@string/txtEmail"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />

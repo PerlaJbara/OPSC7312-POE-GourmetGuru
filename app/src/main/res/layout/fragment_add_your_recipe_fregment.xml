@@ -44,10 +44,10 @@
                 android:layout_width="353dp"
                 android:layout_height="114dp"
                 android:fontFamily="@font/cherry_swash_bold"
-                android:text="My Recipes"
+                android:text="@string/my_recipes"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
-                android:textSize="60dp"
+                android:textSize="60sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -82,9 +82,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:fontFamily="@font/lora"
-                    android:text="Add Your Recipe"
+                    android:text="@string/txtAdd_your_recipe"
                     android:textColor="@android:color/white"
-                    android:textSize="30dp"
+                    android:textSize="30sp"
                     android:textStyle="bold" />
 
 
@@ -100,7 +100,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
                         android:layout_marginVertical="5dp"
-                        android:text="Recipe Name:"
+                        android:text="@string/txtRecipe_name"
                         android:textColor="@android:color/white"
                         android:fontFamily="@font/lora"
                         android:textSize="20dp"
@@ -122,9 +122,9 @@
                         android:layout_gravity="left"
                         android:layout_marginVertical="5dp"
                         android:fontFamily="@font/lora"
-                        android:text="Duration:"
+                        android:text="@string/txtDuration"
                         android:textColor="@android:color/white"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -156,9 +156,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:fontFamily="@font/lora"
-                        android:text="Hours"
+                        android:text="@string/txtHours"
                         android:textColor="@android:color/white"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/txtDurationHrs"
@@ -171,9 +171,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/lora"
-                        android:text="Minutes"
+                        android:text="@string/txtMinutes"
                         android:textColor="@android:color/white"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/txtDurationMins"
@@ -210,9 +210,9 @@
                         android:layout_gravity="left"
                         android:layout_marginVertical="5dp"
                         android:fontFamily="@font/lora"
-                        android:text="Ingredients:"
+                        android:text="@string/txtIngredients"
                         android:textColor="@android:color/white"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -241,9 +241,9 @@
                         android:layout_gravity="left"
                         android:layout_marginVertical="5dp"
                         android:fontFamily="@font/lora"
-                        android:text="Ingredient Name:"
+                        android:text="@string/txtIngredient_name"
                         android:textColor="@android:color/white"
-                        android:textSize="18dp"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <EditText
@@ -267,9 +267,9 @@
                         android:layout_gravity="left"
                         android:layout_marginVertical="5dp"
                         android:fontFamily="@font/lora"
-                        android:text="Ingredient Amount:"
+                        android:text="@string/txtIngredient_amount"
                         android:textColor="@android:color/white"
-                        android:textSize="18dp"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <EditText
@@ -291,7 +291,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:backgroundTint="@color/black"
-                        android:text="Add Ingredient"
+                        android:text="@string/txtAdd_ingredient"
                         android:textColor="@android:color/white" />
 
                 </LinearLayout>
@@ -309,9 +309,9 @@
                         android:layout_gravity="left"
                         android:layout_marginVertical="5dp"
                         android:fontFamily="@font/lora"
-                        android:text="Method:"
+                        android:text="@string/txtIngredients"
                         android:textColor="@android:color/white"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -341,9 +341,9 @@
                         android:layout_gravity="left"
                         android:layout_marginVertical="5dp"
                         android:fontFamily="@font/lora"
-                        android:text="Enter next step:"
+                        android:text="@string/txtEnter_next_step"
                         android:textColor="@android:color/white"
-                        android:textSize="18dp"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <EditText
@@ -361,7 +361,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:backgroundTint="@color/black"
-                    android:text="Add Step"
+                    android:text="@string/txtAdd_step"
                     android:textColor="@android:color/white" />
 
                 <LinearLayout
@@ -381,9 +381,9 @@
                             android:layout_gravity="left"
                             android:layout_marginVertical="5dp"
                             android:fontFamily="@font/lora"
-                            android:text="Lock Recipe?"
+                            android:text="@string/txtLock_recipe"
                             android:textColor="@android:color/white"
-                            android:textSize="20dp"
+                            android:textSize="20sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -424,7 +424,7 @@
                 android:layout_gravity="center_horizontal"
                 android:backgroundTint="@color/black"
                 android:textSize="20dp"
-                android:text="Save"
+                android:text="@string/btnSave"
                 android:textColor="@android:color/white" />
 
         </LinearLayout>

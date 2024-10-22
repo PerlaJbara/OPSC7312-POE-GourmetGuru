@@ -43,10 +43,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cherry_swash_bold"
-                android:text="Meal Plan"
+                android:text="@string/txtMeal_plan"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
-                android:textSize="60dp"
+                android:textSize="60sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -73,8 +73,8 @@
             android:fontFamily="@font/lora"
             android:textStyle="bold"
             android:textColor="@android:color/white"
-            android:textSize="35dp"
-            android:text="Monday" />
+            android:textSize="35sp"
+            android:text="@string/txtMonday" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -121,31 +121,31 @@
                     android:id="@+id/brek1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Breakfast 1"
+                    android:text="@string/txtBreakfast1"
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginVertical="5dp"
                     android:textColor="@android:color/white"
                     android:fontFamily="@font/lora"
                     android:textStyle="bold"
-                    android:textSize="18dp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/txtbrek2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Breakfast 2"
+                    android:text="@string/breakfast_2"
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginVertical="5dp"
                     android:textColor="@android:color/white"
                     android:fontFamily="@font/lora"
                     android:textStyle="bold"
-                    android:textSize="18dp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/txtbrek3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Breakfast 3"
+                    android:text="@string/breakfast_3"
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginVertical="5dp"
                     android:textColor="@android:color/white"
@@ -157,22 +157,22 @@
                     android:id="@+id/txtbrek4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Breakfast 4"
+                    android:text="@string/breakfast_4"
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginVertical="5dp"
                     android:textColor="@android:color/white"
                     android:fontFamily="@font/lora"
                     android:textStyle="bold"
-                    android:textSize="18dp" />
+                    android:textSize="18sp" />
 
                 <Button
                     android:id="@+id/btnSave"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingVertical="10dp"
-                    android:text="Save"
+                    android:text="@string/btnSave"
                     android:fontFamily="@font/lora"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:layout_marginTop="70dp"
                     android:layout_marginHorizontal="120dp"

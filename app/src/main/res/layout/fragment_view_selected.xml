@@ -133,7 +133,7 @@
                     android:paddingTop="20dp"
                     android:paddingLeft="20dp"
                     android:fontFamily="@font/lora"
-                    android:text="Ingredients:"
+                    android:text="@string/txtIngredients"
                     android:textColor="@android:color/white"
                     android:textSize="24dp"
                     android:textStyle="bold" />
@@ -159,7 +159,7 @@
                     android:paddingTop="20dp"
                     android:paddingLeft="20dp"
                     android:fontFamily="@font/lora"
-                    android:text="Method:"
+                    android:text="@string/txtMethod"
                     android:textColor="@android:color/white"
                     android:textSize="24dp"
                     android:textStyle="bold" />

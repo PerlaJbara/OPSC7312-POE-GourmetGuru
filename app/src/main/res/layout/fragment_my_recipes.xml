@@ -44,10 +44,10 @@
                 android:layout_width="353dp"
                 android:layout_height="114dp"
                 android:fontFamily="@font/cherry_swash_bold"
-                android:text="My Recipes"
+                android:text="@string/my_recipes"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
-                android:textSize="60dp"
+                android:textSize="60sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -89,9 +89,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:fontFamily="@font/lora"
-                    android:text="Add Your Recipes"
+                    android:text="@string/add_your_recipes"
                     android:textColor="@android:color/white"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -113,9 +113,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:fontFamily="@font/lora"
-                        android:text="View Your Recipes"
+                        android:text="@string/view_your_recipes"
                         android:textColor="@android:color/white"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -139,9 +139,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:fontFamily="@font/lora"
-                        android:text="Create New Collection"
+                        android:text="@string/create_new_collection"
                         android:textColor="@android:color/white"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -164,9 +164,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:fontFamily="@font/lora"
-                        android:text="View Your Collections"
+                        android:text="@string/view_your_collections"
                         android:textColor="@android:color/white"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -216,9 +216,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:fontFamily="@font/lora"
-                        android:text="Timer"
+                        android:text="@string/timer"
                         android:textColor="@android:color/white"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -237,7 +237,7 @@
                         android:text=""
                         android:layout_marginTop="50dp"
                         android:textColor="@android:color/white"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 

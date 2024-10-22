@@ -44,7 +44,7 @@
                 android:layout_width="353dp"
                 android:layout_height="114dp"
                 android:fontFamily="@font/cherry_swash_bold"
-                android:text="My Recipes"
+                android:text="@string/my_recipes"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
                 android:textSize="60dp"
@@ -146,7 +146,7 @@
                         android:paddingBottom="20dp"
                         android:paddingLeft="20dp"
                         android:fontFamily="@font/lora"
-                        android:text="Ingredients:"
+                        android:text="@string/txtIngredients"
                         android:textColor="@android:color/white"
                         android:textSize="24dp"
                         android:textStyle="bold" />
@@ -186,7 +186,7 @@
                         android:paddingBottom="20dp"
                         android:paddingLeft="20dp"
                         android:fontFamily="@font/lora"
-                        android:text="Method:"
+                        android:text="@string/txtMethod"
                         android:textColor="@android:color/white"
                         android:textSize="24dp"
                         android:textStyle="bold" />

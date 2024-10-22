@@ -33,7 +33,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/cherry_swash_bold"
-            android:text="Home"
+            android:text="@string/HomeHeading"
             android:textColor="@android:color/white"
             android:textSize="80sp"
             android:textStyle="bold" />
@@ -46,9 +46,9 @@
         android:layout_height="wrap_content"
         android:background="#750A0B"
         android:fontFamily="sans-serif-medium"
-        android:gravity="center"
+        android:gravity="start"
         android:padding="8dp"
-        android:text="Welcome!"
+        android:text="@string/txtWelcome"
         android:textAlignment="textStart"
         android:textColor="@android:color/white"
         android:textSize="24sp"
@@ -98,7 +98,7 @@
                     android:background="#88000000"
                     android:fontFamily="@font/cherry_swash_bold"
                     android:gravity="center"
-                    android:text="Lebanese Cuisine"
+                    android:text="@string/txtLebanese_cuisine"
                     android:textColor="@android:color/white"
                     android:textSize="18sp" />
             </FrameLayout>
@@ -122,7 +122,7 @@
                     android:layout_height="match_parent"
                     android:background="#88000000"
                     android:gravity="center"
-                    android:text="Italian Cuisine"
+                    android:text="@string/txtItalian_cuisine"
                     android:fontFamily="@font/cherry_swash_bold"
                     android:textColor="@android:color/white"
                     android:textSize="18sp" />
@@ -147,7 +147,7 @@
                     android:layout_height="match_parent"
                     android:background="#88000000"
                     android:gravity="center"
-                    android:text="Mexican Cuisine"
+                    android:text="@string/txtMexican_cuisine"
                     android:fontFamily="@font/cherry_swash_bold"
                     android:textColor="@android:color/white"
                     android:textSize="18sp" />
@@ -172,7 +172,7 @@
                     android:layout_height="match_parent"
                     android:background="#88000000"
                     android:gravity="center"
-                    android:text="Portuguese Cuisine"
+                    android:text="@string/txtPortuguese_cuisine"
                     android:fontFamily="@font/cherry_swash_bold"
                     android:textColor="@android:color/white"
                     android:textSize="18sp" />
@@ -199,7 +199,7 @@
                     android:background="#88000000"
                     android:fontFamily="@font/cherry_swash_bold"
                     android:gravity="center"
-                    android:text="French Cuisine"
+                    android:text="@string/txtFrench_cuisine"
                     android:textColor="@android:color/white"
                     android:textSize="18sp" />
             </FrameLayout>
@@ -225,7 +225,7 @@
                     android:background="#88000000"
                     android:fontFamily="@font/cherry_swash_bold"
                     android:gravity="center"
-                    android:text="Japanese Cuisine"
+                    android:text="@string/txtJapanese_cuisine"
                     android:textColor="@android:color/white"
                     android:textSize="18sp" />
             </FrameLayout>
@@ -249,7 +249,7 @@
                     android:layout_height="match_parent"
                     android:background="#88000000"
                     android:gravity="center"
-                    android:text="South African Cuisine"
+                    android:text="@string/txtSouth_african_cuisine"
                     android:fontFamily="@font/cherry_swash_bold"
                     android:textColor="@android:color/white"
                     android:textSize="18sp" />
@@ -274,7 +274,7 @@
                     android:layout_height="match_parent"
                     android:background="#88000000"
                     android:gravity="center"
-                    android:text="Indian Cuisine"
+                    android:text="@string/txtIndian_cuisine"
                     android:fontFamily="@font/cherry_swash_bold"
                     android:textColor="@android:color/white"
                     android:textSize="18sp" />
