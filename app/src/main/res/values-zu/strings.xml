@@ -38,6 +38,8 @@
     <string name="txtChange_password">Shintsha Iphasiwedi</string>
     <string name="txtLogout">Phuma</string>
     <string name="txtDelete_account">Susa I-akhawunti</string>
+    <!--DARKMODE TEST-->
+    <string name="DarkMode">Imodi Emnyama</string>
 
     <!--Change Password Page-->
     <string name="change_passwordHeading">Shintsha Iphasiwedi</string>

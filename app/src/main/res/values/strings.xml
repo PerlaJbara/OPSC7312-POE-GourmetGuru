@@ -38,6 +38,8 @@
     <string name="txtSearch">Search</string>
     <string name="btnFilter">Filter</string>
     <string name="txtResults">Results:</string>
+    <!--DARKMODE TEST-->
+    <string name="DarkMode">Dark Mode</string>
 
     <!--Settings Page-->
     <string name="settingsHeeading">Settings</string>

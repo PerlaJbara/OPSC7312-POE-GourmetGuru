@@ -120,6 +120,7 @@ class SearchFragment : Fragment() {
         val bundle = Bundle().apply {
             putString("cuisine", cuisine)
             putString("recipeName", recipeName)
+            putString("recipeID", recipeName) // Use recipeName as recipeID
         }
 
         // Attach the bundle to the fragment

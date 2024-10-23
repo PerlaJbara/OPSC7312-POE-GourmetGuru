@@ -178,7 +178,7 @@
                     android:scrollbars="vertical"/>
 
                 <ImageView
-                    android:id="@+id/btnsavesel"
+                    android:id="@+id/btnSaveToCollection"
                     android:layout_width="245dp"
                     android:layout_height="62dp"
                     android:layout_gravity="center"

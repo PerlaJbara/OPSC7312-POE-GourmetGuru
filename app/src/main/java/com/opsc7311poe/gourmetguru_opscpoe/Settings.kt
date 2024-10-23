@@ -13,6 +13,15 @@ import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
 
 
+
+//Dark mode stuff
+
+import androidx.appcompat.app.AppCompatDelegate
+import android.content.SharedPreferences
+import android.preference.PreferenceManager
+import android.widget.Switch
+
+
 class Settings : Fragment() {
 
     private lateinit var btnLogout: TextView
@@ -21,6 +30,15 @@ class Settings : Fragment() {
     private lateinit var btnChangeLang: TextView
     private lateinit var btnBack: ImageView
     private lateinit var auth: FirebaseAuth
+
+//Dark mode stuff
+    private lateinit var switchDarkMode: Switch
+    private lateinit var sharedPreferences: SharedPreferences
+
+
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -75,6 +93,28 @@ class Settings : Fragment() {
         }
 
 
+        //MORE DARK MODE STUFF
+        switchDarkMode = view.findViewById(R.id.switchDarkMode)
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+
+        // Set the initial state of the dark mode switch based on user preference
+        val isDarkModeOn = sharedPreferences.getBoolean("DarkMode", false)
+        switchDarkMode.isChecked = isDarkModeOn
+
+        // Set up dark mode switch listener
+        switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                // Enable dark mode
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                saveDarkModePreference(true)
+            } else {
+                // Disable dark mode
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                saveDarkModePreference(false)
+            }
+        }
+
+
         return view
     }
 
@@ -84,6 +124,14 @@ class Settings : Fragment() {
             .replace(R.id.frame_container, fragment)
             .addToBackStack(null)
             .commit()
+    }
+
+
+    //dark mode method
+    private fun saveDarkModePreference(isEnabled: Boolean) {
+        val editor = sharedPreferences.edit()
+        editor.putBoolean("dark_mode", isEnabled)
+        editor.apply()
     }
 
 }

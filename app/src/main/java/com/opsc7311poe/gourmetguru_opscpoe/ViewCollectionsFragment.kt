@@ -81,21 +81,28 @@ class ViewCollectionsFragment : Fragment() {
                         // Create a TextView for each collection
                         val collectionTextView = TextView(requireContext()).apply {
                             text = collectionName
-                            textSize = dpToPx(24f) / requireContext().resources.displayMetrics.density // Convert to sp
-                            typeface = ResourcesCompat.getFont(requireContext(), R.font.lora) // Use ResourcesCompat to load the font
-                            setPadding(25, 18, 16, 16) // Adjust padding as needed
-                            setTextColor(Color.WHITE) // Set text color to white
+                            textSize = dpToPx(24f) / requireContext().resources.displayMetrics.density
+                            typeface = ResourcesCompat.getFont(requireContext(), R.font.lora)
+                            setPadding(25, 18, 16, 16)
+                            setTextColor(Color.WHITE)
                         }
 
+                        // Set click listener for saving a recipe or viewing the collection
                         collectionTextView.setOnClickListener {
-                            val viewSelectedCollFrag = ViewCollectionFragment()
-                            //transferring collection info using a bundle
-                            val bundle = Bundle()
-                            bundle.putString("collectionID", collectionSnapshot.key)
-                            viewSelectedCollFrag.arguments = bundle
-                            //changing to recipe info fragment
-                            it.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                            replaceFragment(viewSelectedCollFrag)
+                            val selectedCollectionID = collectionSnapshot.key ?: ""
+                            val recipeID = arguments?.getString("recipeID") // Get the passed recipeID
+
+                            if (selectedCollectionID.isNotEmpty()) {
+                                if (recipeID != null) {
+                                    // Save the recipe to the collection
+                                    saveRecipeToCollection(recipeID, selectedCollectionID)
+                                } else {
+                                    // No recipe to save, just view the collection
+                                    openCollection(selectedCollectionID)
+                                }
+                            } else {
+                                Toast.makeText(requireContext(), "Collection ID is missing", Toast.LENGTH_SHORT).show()
+                            }
                         }
 
                         // Add the TextView to the LinearLayout
@@ -108,6 +115,67 @@ class ViewCollectionsFragment : Fragment() {
                 }
             })
     }
+
+    private fun saveRecipeToCollection(recipeID: String, collectionID: String) {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
+
+        // Reference to the user's selected collection in Firebase
+        val collectionRef = database.child("Users").child(userId).child("Collections").child(collectionID).child("Recipes")
+
+        // Add the recipe to the collection
+        collectionRef.child(recipeID).setValue(true).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Toast.makeText(requireContext(), "Recipe saved to collection", Toast.LENGTH_SHORT).show()
+                // Navigate to the selected collection to view it
+                openCollection(collectionID)
+            } else {
+                Toast.makeText(requireContext(), "Failed to save recipe: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun openCollection(collectionID: String) {
+        val viewSelectedCollFrag = ViewCollectionFragment()
+        val bundle = Bundle()
+        bundle.putString("collectionID", collectionID)
+        viewSelectedCollFrag.arguments = bundle
+        replaceFragment(viewSelectedCollFrag)
+    }
+
+
+
+
+    ///TESTING
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     fun dpToPx(dp: Float): Float {
         val density = requireContext().resources.displayMetrics.density

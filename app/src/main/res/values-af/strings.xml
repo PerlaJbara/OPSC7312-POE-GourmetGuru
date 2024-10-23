@@ -39,6 +39,8 @@
     <string name="txtChange_password">Verander Wagwoord</string>
     <string name="txtLogout">Teken Uit</string>
     <string name="txtDelete_account">Vee Rekening Uit</string>
+    <!--DARKMODE TEST-->
+    <string name="DarkMode">Donker modus</string>
 
     <!--Change Password Page-->
     <string name="change_passwordHeading">Verander Wagwoord</string>

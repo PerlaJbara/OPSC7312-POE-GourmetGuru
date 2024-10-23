@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ggRed"
+    android:background="?android:attr/colorBackground"
     tools:context=".MainActivity">
 
 
@@ -22,7 +22,7 @@
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/ggRed"
+        android:background="?android:attr/colorBackground"
         app:itemActiveIndicatorStyle="@color/black"
         app:itemIconSize="38dp"
         app:itemIconTint="@color/grey"

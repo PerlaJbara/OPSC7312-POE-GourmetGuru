@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.opsc7311poe.gourmetguru_opscpoe.databinding.FragmentViewSelectedBinding
@@ -21,6 +22,12 @@ class ViewSelectedFragment : Fragment() {
     private var recipeName: String? = null
     private var cuisine: String? = null
     private lateinit var btnBack: ImageView
+    private lateinit var btnSaveToCollection: ImageView // Add a reference for the save button
+
+
+
+    private lateinit var recipeID: String
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,15 +47,32 @@ class ViewSelectedFragment : Fragment() {
             Log.e("ViewSelectedFragment", "Cuisine or Recipe Name is null.")
         }
 
-
         btnBack = binding.btnBack // Use binding to get btnBack directly
         btnBack.setOnClickListener {
             // Go back to the previous fragment instead of replacing
             parentFragmentManager.popBackStack()
         }
 
-        return binding.root
+        recipeID = arguments?.getString("recipeID") ?: "" // recipeName will be treated as recipeID
 
+// Ensure recipeID is not empty
+        if (recipeID.isEmpty()) {
+            Toast.makeText(requireContext(), "Recipe ID not found", Toast.LENGTH_SHORT).show()
+            return binding.root
+        }
+
+        // Initialize the save button and set its click listener
+        btnSaveToCollection = binding.btnSaveToCollection // Ensure you have a corresponding view in your XML layout
+        btnSaveToCollection.setOnClickListener {
+            // Navigate to the collection view fragment and pass the recipeID as an argument
+            val viewCollectionsFrag = ViewCollectionsFragment()
+            val bundle = Bundle()
+            bundle.putString("recipeID", recipeID) // Pass the recipeID to the collections view
+            viewCollectionsFrag.arguments = bundle
+            replaceFragment(viewCollectionsFrag)
+        }
+
+        return binding.root
     }
 
     private fun loadRecipe(cuisine: String, recipeName: String) {
@@ -95,5 +119,10 @@ class ViewSelectedFragment : Fragment() {
             })
     }
 
-
+    private fun replaceFragment(fragment: Fragment) {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.frame_container, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
 }

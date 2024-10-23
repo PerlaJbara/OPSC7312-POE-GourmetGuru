@@ -38,6 +38,8 @@
     <string name="txtChange_password">Mudar Senha</string>
     <string name="txtLogout">Sair</string>
     <string name="txtDelete_account">Deletar Conta</string>
+    <!--DARKMODE TEST-->
+    <string name="DarkMode">Modo escuro</string>
 
     <!--Change Password Page-->
     <string name="change_passwordHeading">Mudar Senha</string>
