@@ -309,7 +309,7 @@
                         android:layout_gravity="left"
                         android:layout_marginVertical="5dp"
                         android:fontFamily="@font/lora"
-                        android:text="@string/txtIngredients"
+                        android:text="@string/txtMethod"
                         android:textColor="@android:color/white"
                         android:textSize="20sp"
                         android:textStyle="bold" />

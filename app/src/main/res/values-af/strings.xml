@@ -158,6 +158,7 @@
 
     <!--my recipes page-->
     <string name="no_recipes_to_display">No Recipes to Display</string>
+    <string name="add_recipe">Voeg Resep By</string>
 
 
 </resources>
