@@ -28,7 +28,7 @@ class ChangeLanguageFragment : Fragment() {
         //populate spinner
         spinLang = view.findViewById(R.id.spinLang)
 
-        val langs = arrayOf(getString(R.string.spinEnglishOption), getString(R.string.spinAfrikaansOption))
+        val langs = arrayOf(getString(R.string.spinEnglishOption), getString(R.string.spinAfrikaansOption), getString(R.string.spinZuluOption), getString(R.string.spinPortugueseOption))
 
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, langs)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -48,13 +48,19 @@ class ChangeLanguageFragment : Fragment() {
             val selectedLang = spinLang.selectedItem
 
             //changing app language into selected language
-            if (selectedLang == getString(R.string.spinEnglishOption))
-            {
-                setAppLang("en")
-            }
-            else if (selectedLang == getString(R.string.spinAfrikaansOption))
-            {
-                setAppLang("af")
+            when (selectedLang) {
+                getString(R.string.spinEnglishOption) -> {
+                    setAppLang("en")
+                }
+                getString(R.string.spinAfrikaansOption) -> {
+                    setAppLang("af")
+                }
+                getString(R.string.spinZuluOption) -> {
+                    setAppLang("zu")
+                }
+                getString(R.string.spinPortugueseOption) -> {
+                    setAppLang("pt")
+                }
             }
 
         }

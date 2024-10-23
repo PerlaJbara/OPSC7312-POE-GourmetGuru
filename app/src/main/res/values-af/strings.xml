@@ -7,6 +7,8 @@
     <string name="btnSave">Stoor</string>
     <string name="spinEnglishOption">Engels</string>
     <string name="spinAfrikaansOption">Afrikaans</string>
+    <string name="spinPortugueseOption">Portugees</string>
+    <string name="spinZuluOption">Zoeloe</string>
 
     <!--Home page-->
     <string name="HomeHeading">Tuis</string>

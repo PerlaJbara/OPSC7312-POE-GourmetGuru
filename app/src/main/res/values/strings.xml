@@ -1,4 +1,9 @@
 <resources>
+    <!--other-->
+    <string name="app_name" translatable="false">GourmetGuru-OPSCPOE</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="default_web_client_id" translatable="false">381636906301-rtmeb4afv74tk7lrlntak3651jc1e4c0.apps.googleusercontent.com</string>
+
 
     <!--for change language page-->
     <string name="changeLangFragHeading">Change Language</string>
@@ -6,11 +11,10 @@
     <string name="btnSave">Save</string>
     <string name="spinEnglishOption">English</string>
     <string name="spinAfrikaansOption">Afrikaans</string>
+    <string name="spinPortugueseOption">Portuguese</string>
+    <string name="spinZuluOption">Zulu</string>
 
-    <!--other-->
-    <string name="app_name" translatable="false">GourmetGuru-OPSCPOE</string>
-    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-    <string name="default_web_client_id" translatable="false">381636906301-rtmeb4afv74tk7lrlntak3651jc1e4c0.apps.googleusercontent.com</string>
+
 
     <!--Home page-->
     <string name="HomeHeading">Home</string>
