@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ggRed"
+    android:background="?android:attr/colorBackground"
     tools:context=".ViewSelectedRecipeFragment">
 
     <LinearLayout
@@ -20,24 +20,24 @@
 
             <ImageView
                 android:id="@+id/MyRecipesHeaderImage"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/headerphoto" />
-
-            <View
-                android:id="@+id/view"
+                android:src="@drawable/headerphoto"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="#40000000" />
+                android:background="#40000000"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -57,13 +57,13 @@
 
             <ImageView
                 android:id="@+id/btnBack"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:src="@drawable/vectorbackarrowwhite" />
+                android:src="@drawable/vectorbackarrowwhite"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -74,7 +74,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/txtRecipeName"
@@ -91,7 +91,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" >
+                    android:orientation="vertical">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -142,10 +142,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
+                        android:fontFamily="@font/lora"
+                        android:paddingLeft="20dp"
                         android:paddingTop="20dp"
                         android:paddingBottom="20dp"
-                        android:paddingLeft="20dp"
-                        android:fontFamily="@font/lora"
                         android:text="@string/txtIngredients"
                         android:textColor="@android:color/white"
                         android:textSize="24dp"
@@ -165,10 +165,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="30dp"
                         android:fontFamily="@font/lora"
-                        android:textColor="@android:color/white"
+                        android:gravity="top"
                         android:inputType="textMultiLine"
                         android:minLines="3"
-                        android:gravity="top" />
+                        android:textColor="@android:color/white" />
 
                 </LinearLayout>
 
@@ -182,10 +182,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
+                        android:fontFamily="@font/lora"
+                        android:paddingLeft="20dp"
                         android:paddingTop="20dp"
                         android:paddingBottom="20dp"
-                        android:paddingLeft="20dp"
-                        android:fontFamily="@font/lora"
                         android:text="@string/txtMethod"
                         android:textColor="@android:color/white"
                         android:textSize="24dp"
@@ -202,11 +202,11 @@
                         android:id="@+id/txtMethods"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/lora"
                         android:layout_marginHorizontal="30dp"
-                        android:textColor="@android:color/white"
+                        android:fontFamily="@font/lora"
+                        android:gravity="top"
                         android:minLines="3"
-                        android:gravity="top" />
+                        android:textColor="@android:color/white" />
 
                 </LinearLayout>
 
@@ -217,7 +217,6 @@
                     android:layout_gravity="center"
                     android:layout_marginVertical="50dp"
                     android:src="@drawable/bookmark" />
-
 
 
                 <LinearLayout
@@ -310,8 +309,6 @@
         </ScrollView>
 
     </LinearLayout>
-
-
 
 
 </FrameLayout>

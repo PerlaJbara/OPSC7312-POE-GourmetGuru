@@ -130,7 +130,7 @@ class Settings : Fragment() {
     //dark mode method
     private fun saveDarkModePreference(isEnabled: Boolean) {
         val editor = sharedPreferences.edit()
-        editor.putBoolean("dark_mode", isEnabled)
+        editor.putBoolean("DarkMode", isEnabled)
         editor.apply()
     }
 

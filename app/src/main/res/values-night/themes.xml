@@ -3,5 +3,23 @@
     <style name="Base.Theme.GourmetGuruOPSCPOE" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Background color for dark mode -->
         <item name="android:colorBackground">#121212</item>
+
+        <item name="android:textColor">#FF000000</item>
     </style>
+
+    <!-- Button style for dark mode (MaterialButton) -->
+    <style name="CustomButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">#750A0B</item> <!-- Dark red button in dark mode -->
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="shapeAppearance">@style/CustomButtonShape</item>
+    </style>
+
+
+    <style name="CustomButtonShape" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">100dp</item> <!-- Set corner radius to 16dp -->
+    </style>
+
+
+
 </resources>

@@ -118,6 +118,7 @@
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
+                        android:textColor="?android:textColor"
                         android:background="@drawable/txt_background"
                         android:paddingTop="20dp"
                         tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
@@ -153,6 +154,7 @@
                         android:background="@drawable/txt_background"
                         android:inputType="number"
                         android:paddingTop="5dp"
+                        android:textColor="?android:textColor"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
@@ -195,6 +197,7 @@
                         android:background="@drawable/txt_background"
                         android:inputType="number"
                         android:paddingTop="5dp"
+                        android:textColor="?android:textColor"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/TextView2"
                         app:layout_constraintTop_toTopOf="parent"
@@ -258,6 +261,7 @@
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/txt_background"
+                        android:textColor="?android:textColor"
                         tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                 </LinearLayout>
 
@@ -285,6 +289,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
                         android:background="@drawable/txt_background"
+                        android:textColor="?android:textColor"
                         tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                 </LinearLayout>
                 <LinearLayout
@@ -294,10 +299,10 @@
 
                     <Button
                         android:id="@+id/btnAddIngredient"
+                        style="@style/CustomButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:backgroundTint="@color/black"
                         android:text="@string/txtAdd_ingredient"
                         android:textColor="@android:color/white" />
 
@@ -356,14 +361,16 @@
                     <EditText
                         android:id="@+id/txtStep"
                         android:layout_width="match_parent"
-                        android:paddingBottom="40dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/txt_background"
+                        android:paddingBottom="40dp"
+                        android:textColor="?android:textColor"
                         tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                 </LinearLayout>
 
                 <Button
                     android:id="@+id/btnAddStep"
+                    style="@style/CustomButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -426,10 +433,10 @@
             <!-- Submit Button -->
             <Button
                 android:id="@+id/btnAddRecipe"
+                style="@style/CustomButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:backgroundTint="@color/black"
                 android:textSize="20dp"
                 android:text="@string/btnSave"
                 android:textColor="@android:color/white" />

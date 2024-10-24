@@ -104,6 +104,7 @@
 
         <Button
             android:id="@+id/btnAddRecipe"
+            style="@style/CustomButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/add_recipe"

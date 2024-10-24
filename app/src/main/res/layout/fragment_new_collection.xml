@@ -90,10 +90,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="45dp"
                 android:background="@drawable/txt_background"
-                android:textColor="@color/black" />
+                android:textColor="?android:textColor"  />
 
             <Button
                 android:id="@+id/btnSave"
+                style="@style/CustomButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingVertical="10dp"

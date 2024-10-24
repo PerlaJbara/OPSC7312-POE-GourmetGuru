@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ggRed"
+    android:background="?android:attr/colorBackground"
     tools:context=".ViewSelectedFragment">
 
     <!-- Main container -->
@@ -25,20 +25,20 @@
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/headerphoto"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <View
                 android:id="@+id/view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="#40000000"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -130,9 +130,9 @@
                     android:id="@+id/tvIngredient"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingTop="20dp"
-                    android:paddingLeft="20dp"
                     android:fontFamily="@font/lora"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="20dp"
                     android:text="@string/txtIngredients"
                     android:textColor="@android:color/white"
                     android:textSize="24dp"
@@ -143,22 +143,22 @@
                     android:id="@+id/tvIngredientsList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="20dp"
                     android:fontFamily="@font/lora"
-                    android:textColor="@android:color/white"
-                    android:textSize="18dp"
                     android:lineSpacingExtra="4dp"
                     android:maxLines="10"
-                    android:scrollbars="vertical"/>
+                    android:paddingLeft="20dp"
+                    android:scrollbars="vertical"
+                    android:textColor="@android:color/white"
+                    android:textSize="18dp" />
 
                 <!-- Method Title -->
                 <TextView
                     android:id="@+id/tvMethod"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingTop="20dp"
-                    android:paddingLeft="20dp"
                     android:fontFamily="@font/lora"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="20dp"
                     android:text="@string/txtMethod"
                     android:textColor="@android:color/white"
                     android:textSize="24dp"
@@ -169,13 +169,13 @@
                     android:id="@+id/tvSteps"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="20dp"
                     android:fontFamily="@font/lora"
-                    android:textColor="@android:color/white"
-                    android:textSize="18dp"
                     android:lineSpacingExtra="4dp"
                     android:maxLines="10"
-                    android:scrollbars="vertical"/>
+                    android:paddingLeft="20dp"
+                    android:scrollbars="vertical"
+                    android:textColor="@android:color/white"
+                    android:textSize="18dp" />
 
                 <ImageView
                     android:id="@+id/btnSaveToCollection"

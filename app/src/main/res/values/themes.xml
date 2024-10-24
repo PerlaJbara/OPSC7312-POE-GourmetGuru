@@ -2,8 +2,27 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.GourmetGuruOPSCPOE" parent="Theme.Material3.DayNight.NoActionBar">
         //Testing for light mode
-        <item name="android:colorBackground">#750A0B</item> <!-- Your light mode background color -->
+        <item name="android:colorBackground">#750A0B</item>
+
+        <item name="android:textColor">#FF000000</item> <!-- White text for dark mode -->
+
+
     </style>
+
+
+    <!-- Button style for light mode (MaterialButton) -->
+    <style name="CustomButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">#FF000000</item>
+        <item name="android:textColor">#FFFFFF</item> <!-- White text on button in light mode -->
+        <item name="shapeAppearance">@style/CustomButtonShape</item> <!-- Apply custom shape -->
+    </style>
+
+
+    <style name="CustomButtonShape" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">100dp</item> <!-- Set corner radius to 16dp -->
+    </style>
+
 
     <style name="Theme.GourmetGuruOPSCPOE" parent="Base.Theme.GourmetGuruOPSCPOE" />
 </resources>

@@ -101,6 +101,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="60dp"
                 android:background="@drawable/txt_background"
+                android:textColor="?android:textColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView4"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -167,6 +168,7 @@
 
                 <Button
                     android:id="@+id/btnSave"
+                    style="@style/CustomButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingVertical="10dp"

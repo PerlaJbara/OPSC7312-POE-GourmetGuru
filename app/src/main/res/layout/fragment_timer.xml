@@ -153,9 +153,9 @@
                         <!-- Start Timer Button -->
                         <Button
                             android:id="@+id/btnStartTimer"
+                            style="@style/CustomButtonStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:backgroundTint="@color/black"
                             android:text="@string/start"
                             android:textSize="18dp"
                             android:textColor="@android:color/white"
@@ -167,9 +167,9 @@
                         <!-- Pause Timer Button (Initially hidden) -->
                         <Button
                             android:id="@+id/btnPauseTimer"
+                            style="@style/CustomButtonStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:backgroundTint="@color/black"
                             android:text="@string/pause"
                             android:textSize="18dp"
                             android:textColor="@android:color/white"
@@ -194,6 +194,7 @@
 
                         <TextView
                             android:id="@+id/btnReset"
+                            style="@style/CustomButtonStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="8dp"
@@ -220,9 +221,9 @@
                         <!-- End Alarm Button -->
                         <Button
                             android:id="@+id/btnEndAlarm"
+                            style="@style/CustomButtonStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:backgroundTint="@color/black"
                             android:text="@string/end_alarm"
                             android:textSize="18dp"
                             android:visibility="gone"

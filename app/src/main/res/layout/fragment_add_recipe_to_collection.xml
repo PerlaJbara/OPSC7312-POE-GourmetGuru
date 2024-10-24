@@ -93,6 +93,7 @@
                     android:layout_marginHorizontal="45dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="60dp"
+                    android:textColor="?android:textColor"
                     android:background="@drawable/txt_background"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageView4"
@@ -109,6 +110,7 @@
 
                 <Button
                     android:id="@+id/btnSearch"
+                    style="@style/CustomButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="50dp"
@@ -123,16 +125,18 @@
 
                 <Button
                     android:id="@+id/btnFilter"
+                    style="@style/CustomButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="50dp"
                     android:backgroundTint="@color/black"
                     android:fontFamily="@font/lora"
-                    android:paddingVertical="10dp"
                     android:paddingHorizontal="30dp"
+                    android:paddingVertical="10dp"
                     android:text="@string/btnFilter"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    app:cornerRadius="100dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>

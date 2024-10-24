@@ -82,12 +82,13 @@
         <!-- EditText for Password Input -->
         <EditText
             android:id="@+id/edtconfirmpass"
-            android:inputType="textPassword"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
             android:background="@drawable/txt_background"
-            android:ems="10" />
+            android:ems="10"
+            android:inputType="textPassword"
+            android:textColor="?android:textColor" />
 
         <!-- Warning Text -->
         <TextView
@@ -104,6 +105,7 @@
         <!-- Delete Button -->
         <Button
             android:id="@+id/btnDelete"
+            style="@style/CustomButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/black"
