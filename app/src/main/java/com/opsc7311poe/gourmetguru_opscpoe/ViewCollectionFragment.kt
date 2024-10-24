@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -18,6 +19,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.getValue
 
 class ViewCollectionFragment : Fragment() {
     private lateinit var txtName: TextView
@@ -32,9 +34,9 @@ class ViewCollectionFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_view_collection, container, false)
 
-        // Fetching collection info and displaying
-        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
-        val database = FirebaseDatabase.getInstance().reference
+        //fetching collection info and displaying
+        var userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+        var database = FirebaseDatabase.getInstance().reference
         collectionID = arguments?.getString("collectionID")!!
 
         txtName = view.findViewById(R.id.txtCollName)
@@ -42,37 +44,41 @@ class ViewCollectionFragment : Fragment() {
 
         if (userId.isEmpty()) {
             Toast.makeText(requireContext(), "User not logged in", Toast.LENGTH_SHORT).show()
-        } else {
+        }
+        else {
             // Reference to the user's collections in Firebase
-            database.child("Users").child(userId).child("Collections").child(collectionID)
+            database.child("Users").child(userId).child("Collections").child(collectionID!!)
                 .addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
-                        txtName.text = dataSnapshot.child("name").value as? String ?: "Unnamed Collection"
 
-                        // Retrieve the recipes as a map and iterate through them
-                        val recipeMap = dataSnapshot.child("Recipes").children
+                        txtName.text = dataSnapshot.child("name").value as String
 
-                        // Displaying all recipes in collection
-                        linlayCollectionRecipes.removeAllViews()
+                        val recipeList = dataSnapshot.child("Recipes").value as List<String>?
 
-                        recipeMap.forEach { recipeSnapshot ->
-                            // Extracting recipe details
-                            val recipeID = recipeSnapshot.key ?: ""
-                            val recipeName = recipeSnapshot.child("name").value as? String ?: recipeID
+                        //displaying all recipes in collection
+                        if (recipeList != null){
+                            linlayCollectionRecipes.removeAllViews()
 
-                            // Create a TextView for each recipe
-                            val recipeNameTextView = TextView(requireContext()).apply {
-                                text = recipeName
-                                textSize = dpToPx(24f) / requireContext().resources.displayMetrics.density
-                                typeface = ResourcesCompat.getFont(requireContext(), R.font.lora)
-                                setPadding(25, 18, 16, 16)
-                                setTextColor(Color.WHITE)
-                                setOnClickListener {
-                                    navigateToRecipeDetails(recipeID)
+                            for (recipeName in recipeList!!) {
+
+                                // Create a TextView for each collection
+                                val recipeNameTextView = TextView(requireContext()).apply {
+                                    text = recipeName
+                                    textSize =
+                                        dpToPx(24f) / requireContext().resources.displayMetrics.density // Convert to sp
+                                    typeface = ResourcesCompat.getFont(
+                                        requireContext(),
+                                        R.font.lora
+                                    ) // Use ResourcesCompat to load the font
+                                    setPadding(25, 18, 16, 16) // Adjust padding as needed
+                                    setTextColor(Color.WHITE) // Set text color to white
                                 }
+                                linlayCollectionRecipes.addView(recipeNameTextView)
+
                             }
-                            linlayCollectionRecipes.addView(recipeNameTextView)
                         }
+
+
                     }
 
                     override fun onCancelled(databaseError: DatabaseError) {
@@ -85,17 +91,21 @@ class ViewCollectionFragment : Fragment() {
                 })
         }
 
-        // Handling add recipe button functionality
+        //handling add recipe button functionality
         btnAdd = view.findViewById(R.id.btnAddRecipe)
+
         btnAdd.setOnClickListener {
             val addRecToCollFrag = AddRecipeToCollectionFragment()
+            //transferring collection info using a bundle
             val bundle = Bundle()
             bundle.putString("collectionID", collectionID)
             Log.d("AddRecipeToCollection", "Collection ID sent: $collectionID")
             addRecToCollFrag.arguments = bundle
+            //changing to recipe info fragment
             it.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
             replaceFragment(addRecToCollFrag)
         }
+
 
         return view
     }
@@ -107,16 +117,8 @@ class ViewCollectionFragment : Fragment() {
             .commit()
     }
 
-    private fun navigateToRecipeDetails(recipeID: String) {
-        val viewSelectedFragment = ViewSelectedFragment()
-        val bundle = Bundle()
-        bundle.putString("recipeID", recipeID)
-        viewSelectedFragment.arguments = bundle
-        replaceFragment(viewSelectedFragment)
-    }
-
-    fun dpToPx(dp: Float): Float {
-        val density = requireContext().resources.displayMetrics.density
-        return dp * density
-    }
+        fun dpToPx(dp: Float): Float {
+            val density = requireContext().resources.displayMetrics.density
+            return dp * density
+        }
 }

@@ -1,5 +1,6 @@
 package com.opsc7311poe.gourmetguru_opscpoe
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
 import com.opsc7311poe.gourmetguru_opscpoe.databinding.FragmentViewSelectedBinding
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.DataSnapshot
@@ -23,6 +25,7 @@ class ViewSelectedFragment : Fragment() {
     private var cuisine: String? = null
     private lateinit var btnBack: ImageView
     private lateinit var btnSaveToCollection: ImageView // Add a reference for the save button
+    val userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
 
 
 
@@ -64,15 +67,133 @@ class ViewSelectedFragment : Fragment() {
         // Initialize the save button and set its click listener
         btnSaveToCollection = binding.btnSaveToCollection // Ensure you have a corresponding view in your XML layout
         btnSaveToCollection.setOnClickListener {
-            // Navigate to the collection view fragment and pass the recipeID as an argument
-            val viewCollectionsFrag = ViewCollectionsFragment()
-            val bundle = Bundle()
-            bundle.putString("recipeID", recipeID) // Pass the recipeID to the collections view
-            viewCollectionsFrag.arguments = bundle
-            replaceFragment(viewCollectionsFrag)
+            // Fetch all collections and wait for the callback
+            getAllCollectionsNames { collectionOptions ->
+                if (collectionOptions.isNotEmpty()) {
+                    // Show an alert dialog with the collection names
+                    val builder = AlertDialog.Builder(requireContext())
+                    builder.setTitle("Choose a collection")
+                    builder.setItems(collectionOptions.toTypedArray()) { dialog, which ->
+                        val selectedCollection = collectionOptions[which]
+
+                        // Save the recipe to the selected collection
+                        saveRecipeToCollection(recipeID, selectedCollection)
+                    }
+                    builder.show()
+                } else {
+                    Toast.makeText(requireContext(), "No collections found", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            // Navigate to the collection view fragment
+            replaceFragment(ViewCollectionsFragment())
         }
 
         return binding.root
+    }
+
+    private fun getAllCollectionsNames(callback: (List<String>) -> Unit) {
+        val userCollectionsPath = "Users/$userId/Collections"
+        val collectionNames: MutableList<String> = mutableListOf()
+
+        // Fetch all collections under the user
+        FirebaseDatabase.getInstance().reference.child(userCollectionsPath)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    // Loop through each collection and extract the 'name' attribute
+                    for (collectionSnapshot in dataSnapshot.children) {
+                        val collectionName = collectionSnapshot.child("name").getValue(String::class.java)
+                        if (collectionName != null) {
+                            collectionNames.add(collectionName)
+                        }
+                    }
+                    callback(collectionNames)
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    Log.e("TAG", "Error fetching collections: ${databaseError.message}")
+                    Toast.makeText(requireContext(), "Failed to load collections: ${databaseError.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
+    }
+
+    private fun saveRecipeToCollection(recipeName: String, selectedCollection: String) {
+        Log.d("AddRecipeToCollection", "Collection name received: $selectedCollection")
+        val collectionPath = "Users/$userId/Collections"
+        val capitalizedRecipeName = capitalizeWords(recipeName) // Capitalize each word before saving
+
+        // Fetch recipe list
+        // Fetch all collections under the user
+        FirebaseDatabase.getInstance().reference.child(collectionPath)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    var collectionFound = false
+
+                    // Loop through all collections to find the one with the matching name
+                    for (collectionSnapshot in dataSnapshot.children) {
+                        val collectionName = collectionSnapshot.child("name").getValue(String::class.java)
+
+                        if (collectionName == selectedCollection) {
+                            // Collection found
+                            collectionFound = true
+
+                            // Fetch the recipe list within the found collection
+                            val recipesRef = collectionSnapshot.ref.child("Recipes")
+                            recipesRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                                override fun onDataChange(recipesSnapshot: DataSnapshot) {
+                                    val fetchedRecipeList: MutableList<String> = mutableListOf()
+
+                                    // Initialize the list from existing data
+                                    if (recipesSnapshot.exists()) {
+                                        for (snapshot in recipesSnapshot.children) {
+                                            val recipe = snapshot.getValue(String::class.java)
+                                            if (recipe != null) {
+                                                fetchedRecipeList.add(recipe)
+                                            }
+                                        }
+                                    }
+
+                                    // Check if the recipe is already in the list before adding
+                                    if (!fetchedRecipeList.contains(capitalizedRecipeName)) {
+                                        fetchedRecipeList.add(capitalizedRecipeName)
+
+                                        // Save the updated list of recipes
+                                        recipesRef.setValue(fetchedRecipeList)
+                                            .addOnSuccessListener {
+                                                Toast.makeText(requireContext(), "Saved recipe to collection", Toast.LENGTH_SHORT).show()
+                                                replaceFragment(ViewCollectionsFragment())
+                                            }
+                                            .addOnFailureListener { error ->
+                                                Toast.makeText(requireContext(), "Failed to save: ${error.message}", Toast.LENGTH_SHORT).show()
+                                            }
+                                    } else {
+                                        Toast.makeText(requireContext(), "Recipe already in collection", Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+
+                                override fun onCancelled(databaseError: DatabaseError) {
+                                    Toast.makeText(requireContext(), "Failed to load recipe list: ${databaseError.message}", Toast.LENGTH_SHORT).show()
+                                }
+                            })
+                            break // Exit loop after finding the collection
+                        }
+                    }
+
+                    if (!collectionFound) {
+                        Toast.makeText(requireContext(), "Collection not found", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    Toast.makeText(requireContext(), "Failed to search collections: ${databaseError.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
+    }
+
+    private fun capitalizeWords(input: String): String {
+        return input.split(" ").joinToString(" ") { word ->
+            word.replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }
+        }
     }
 
     private fun loadRecipe(cuisine: String, recipeName: String) {
