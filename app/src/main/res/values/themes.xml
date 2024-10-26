@@ -24,5 +24,11 @@
     </style>
 
 
+    <style name="CustomSpinnerStyle" parent="Widget.AppCompat.Spinner">
+        <item name="android:popupBackground">#750A0B</item> <!-- Dark red background for dropdown -->
+    </style>
+
+
+
     <style name="Theme.GourmetGuruOPSCPOE" parent="Base.Theme.GourmetGuruOPSCPOE" />
 </resources>
