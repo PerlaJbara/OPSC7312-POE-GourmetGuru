@@ -1,10 +1,12 @@
 package com.opsc7311poe.gourmetguru_opscpoe
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
@@ -18,6 +20,7 @@ import com.google.firebase.database.ValueEventListener
 
 class ShoppingFragment : Fragment() {
 
+    private lateinit var btnBack: ImageView
     private lateinit var resultsLayout: LinearLayout
     private lateinit var btnFilterByDay: Button
     private lateinit var btnAlphabeticalOrder: Button
@@ -32,6 +35,7 @@ class ShoppingFragment : Fragment() {
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_shopping, container, false)
 
+        btnBack = rootView.findViewById(R.id.btnBack)
         resultsLayout = rootView.findViewById(R.id.resultsLayout)
         btnFilterByDay = rootView.findViewById(R.id.btnFilterByDay)
         btnAlphabeticalOrder = rootView.findViewById(R.id.btnAlphabeticalOrder)
@@ -45,6 +49,10 @@ class ShoppingFragment : Fragment() {
 
         btnAlphabeticalOrder.setOnClickListener {
             displayIngredientsAlphabetically()
+        }
+
+        btnBack.setOnClickListener(){
+            replaceFragment(MealPlanFragment()) //directing user back
         }
 
         return rootView
@@ -103,11 +111,7 @@ class ShoppingFragment : Fragment() {
             })
     }
 
-    /**
-     * Parse ingredient string into quantity and ingredient name.
-     * For example, "1 onion" becomes (1, "onion").
-     */
-    // Modify this function to capitalize the ingredient name
+
     private fun parseIngredient(ingredient: String): Pair<Int, String> {
         val parts = ingredient.split(" ", limit = 2)
         val name =
@@ -116,7 +120,6 @@ class ShoppingFragment : Fragment() {
         return Pair(quantity, name)
     }
 
-// The rest of your code remains unchanged
 
     private fun groupIngredients(ingredients: List<String>): Map<String, Int> {
         val groupedIngredients = mutableMapOf<String, Int>()
@@ -182,6 +185,13 @@ class ShoppingFragment : Fragment() {
             }
             resultsLayout.addView(ingredientText)
         }
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.frame_container, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 
 }
