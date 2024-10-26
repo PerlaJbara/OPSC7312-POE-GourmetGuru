@@ -26,10 +26,13 @@ import android.graphics.drawable.Animatable2
 import android.media.MediaPlayer
 import android.media.Ringtone
 import android.media.RingtoneManager
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.net.Uri
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
+import android.preference.PreferenceManager
 import android.widget.NumberPicker
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
@@ -41,14 +44,14 @@ class TimerFragment : Fragment() {
     private lateinit var btnBack: ImageView
     private lateinit var myRecipesHeaderImage: ImageView
     private lateinit var txtRecipeTimer: TextView
-    private lateinit var txtElapsedTime: TextView
+    lateinit var txtElapsedTime: TextView
     private lateinit var btnStart: Button
     private lateinit var btnReset: TextView
     private lateinit var btnEnd: Button
     private var countdownTimer: CountDownTimer? = null
     private var timeInMillis: Long = 0 // To store user input time in milliseconds
     private var timeRemaining: Long = 0L
-    private var isTimerRunning: Boolean = false
+    var isTimerRunning: Boolean = false
     private lateinit var btnPause: Button
     private lateinit var clockImg : ImageView
     private var ringtone: Ringtone? = null
@@ -221,7 +224,7 @@ class TimerFragment : Fragment() {
 
 
     // Function to parse time input in HH:mm:ss format
-    private fun parseTimeInput(timeInput: String): Long {
+    fun parseTimeInput(timeInput: String): Long {
         val parts = timeInput.split(":")
         return if (parts.size == 3) {
             val hours = parts[0].toLongOrNull() ?: 0
@@ -234,7 +237,7 @@ class TimerFragment : Fragment() {
     }
 
     // Function to start the timer
-    private fun startTimer(milliseconds: Long) {
+    fun startTimer(milliseconds: Long) {
         isTimerRunning = true
         countdownTimer = object : CountDownTimer(milliseconds, 1000) {
             override fun onTick(millisUntilFinished: Long) {
@@ -253,7 +256,7 @@ class TimerFragment : Fragment() {
                 btnPause.visibility = View.GONE
                 btnEnd.visibility = View.VISIBLE
                 // Send push notification
-                sendNotification()
+                sendNotifications()
                 // Play a sound when the timer is finished
                 playAlarm()
 
@@ -302,7 +305,7 @@ class TimerFragment : Fragment() {
     }
 
     // Function to reset the timer
-    private fun resetTimer() {
+    fun resetTimer() {
         countdownTimer?.cancel() // Stop the timer if it's running
         timeInMillis = 0
         txtElapsedTime.text = "00:00:00" // Reset the displayed time
@@ -330,6 +333,19 @@ class TimerFragment : Fragment() {
         }
     }
 
+
+    private fun sendNotifications() {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val notificationsEnabled = sharedPreferences.getBoolean("NotificationsEnabled", true)
+
+        // Check if notifications are enabled before sending
+        if (notificationsEnabled) {
+            sendNotification() // Call the method to send the actual notification
+        } else {
+            // Optionally handle the case where notifications are muted
+            Log.d("Notifications", "Notifications are muted.")
+        }
+    }
 
     // Method to send the notification
     // Method to send the notification
@@ -386,6 +402,8 @@ class TimerFragment : Fragment() {
         notificationManager.notify(1, builder.build())
     }
 
+
+
     // Handle the result of the permission request
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -399,6 +417,8 @@ class TimerFragment : Fragment() {
             Toast.makeText(requireContext(), "Notification permission denied", Toast.LENGTH_SHORT).show()
         }
     }
+
+
 
 
     // Method to play sound when the timer finishes
@@ -422,5 +442,11 @@ class TimerFragment : Fragment() {
             .replace(R.id.frame_container, fragment)
             .addToBackStack(null)
             .commit()
+    }
+
+    fun isOnline(context: Context): Boolean {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
+        return activeNetwork?.isConnected == true
     }
 }

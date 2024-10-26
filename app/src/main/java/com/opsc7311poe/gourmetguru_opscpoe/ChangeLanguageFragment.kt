@@ -34,7 +34,7 @@ class ChangeLanguageFragment : Fragment() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         spinLang.adapter = adapter
-        
+
 
         //back btn functionality
         btnBack = view.findViewById(R.id.btnBack)
@@ -68,7 +68,7 @@ class ChangeLanguageFragment : Fragment() {
         return view
     }
 
-    private fun setAppLang(langCode: String) {
+    fun setAppLang(langCode: String) {
         val locale = Locale(langCode)
         Locale.setDefault(locale)
         val config = resources.configuration

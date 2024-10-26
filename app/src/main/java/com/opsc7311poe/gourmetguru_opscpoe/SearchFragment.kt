@@ -14,11 +14,14 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import android.app.AlertDialog
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import com.opsc7311poe.gourmetguru_opscpoe.databinding.FragmentSearchBinding
 
 class SearchFragment : Fragment() {
 
-    private lateinit var binding: FragmentSearchBinding
+    lateinit var binding: FragmentSearchBinding
     private lateinit var btnBack: ImageView
     private var mealType: String? = null
 
@@ -52,7 +55,7 @@ class SearchFragment : Fragment() {
         return binding.root
     }
 
-    private fun performSearch(query: String) {
+    fun performSearch(query: String) {
         val database = FirebaseDatabase.getInstance().reference
 
         // Clear previous results
@@ -195,5 +198,11 @@ class SearchFragment : Fragment() {
                     binding.layoutResults.addView(textView)
                 }
             })
+    }
+
+    fun isOnline(context: Context): Boolean {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
+        return activeNetwork?.isConnected == true
     }
 }

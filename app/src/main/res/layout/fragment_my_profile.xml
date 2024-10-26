@@ -74,7 +74,7 @@
         android:padding="16dp">
 
         <!-- Profile picture -->
-        <!--<ImageView
+        <ImageView
             android:id="@+id/imgpfp"
             android:layout_width="149dp"
             android:layout_height="117dp"
@@ -82,8 +82,7 @@
             android:src="@drawable/vectormyprofile"
             android:layout_marginTop="16dp" />-->
 
-        <!-- Update Profile Picture text -->
-        <!--<TextView
+        <TextView
             android:id="@+id/txtupdatepfp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -3,20 +3,17 @@ package com.opsc7311poe.gourmetguru_opscpoe
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
-import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.google.firebase.auth.FirebaseAuth
 import junit.framework.TestCase.assertFalse
 import junit.framework.TestCase.assertTrue
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 
 
-class AddYourRecipeFragmentTests {
+class TestingRecipe {
 
-    private lateinit var addYourRecipeFragment: AddYourRecipeFregment
+    private lateinit var SearchFragment: SearchFragment
     private lateinit var mockContext: Context
     private lateinit var mockConnectivityManager: ConnectivityManager
     private lateinit var mockNetworkInfo: NetworkInfo
@@ -24,7 +21,7 @@ class AddYourRecipeFragmentTests {
     @Before
     fun setup() {
         MockitoAnnotations.openMocks(this)
-        addYourRecipeFragment = AddYourRecipeFregment()
+        SearchFragment = SearchFragment()
         mockContext = Mockito.mock(Context::class.java)
         mockConnectivityManager = Mockito.mock(ConnectivityManager::class.java)
         mockNetworkInfo = Mockito.mock(NetworkInfo::class.java)
@@ -38,13 +35,13 @@ class AddYourRecipeFragmentTests {
         Mockito.`when`(mockNetworkInfo.isConnected).thenReturn(true)
         Mockito.`when`(mockConnectivityManager.activeNetworkInfo).thenReturn(mockNetworkInfo)
 
-        assertTrue(addYourRecipeFragment.isOnline(mockContext))
+        assertTrue(SearchFragment.isOnline(mockContext))
     }
 
     @Test
     fun `test isOnline with no network connection`() {
         Mockito.`when`(mockConnectivityManager.activeNetworkInfo).thenReturn(null)
 
-        assertFalse(addYourRecipeFragment.isOnline(mockContext))
+        assertFalse(SearchFragment.isOnline(mockContext))
     }
 }

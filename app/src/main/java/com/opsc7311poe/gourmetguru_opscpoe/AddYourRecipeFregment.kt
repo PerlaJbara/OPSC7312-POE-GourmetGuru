@@ -30,7 +30,7 @@ class AddYourRecipeFregment : Fragment() {
     private lateinit var txtDurationHrs: EditText
     private lateinit var txtDurationMins: EditText
     private lateinit var txtAllIngredients: TextView
-    private lateinit var txtIngrName: EditText
+    lateinit var txtIngrName: EditText
     private lateinit var txtIngrAmount: EditText
     private lateinit var txtMethod: TextView
     private lateinit var txtStep: EditText
