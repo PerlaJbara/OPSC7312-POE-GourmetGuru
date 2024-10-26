@@ -168,5 +168,11 @@
     <string name="no_recipes_to_display">No Recipes to Display</string>
     <string name="add_recipe">Add Recipe</string>
 
+    <!--profile picture page pt 2-->
+    <string name="update_profile_picture">Update Profile Picture</string>
+
+    <!--settings page pt 2-->
+    <string name="turn_off_notifications">Turn off notifications</string>
+
 
 </resources>

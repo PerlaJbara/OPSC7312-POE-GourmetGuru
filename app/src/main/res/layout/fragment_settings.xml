@@ -147,7 +147,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
-                android:text="Turn off notifications"
+                android:text="@string/turn_off_notifications"
                 android:textColor="@android:color/white"
                 android:textSize="24sp"
                 android:textStyle="bold" />
