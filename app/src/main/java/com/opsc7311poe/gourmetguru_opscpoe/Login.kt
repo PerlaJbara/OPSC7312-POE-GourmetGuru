@@ -30,17 +30,19 @@ class Login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        // Initialize Firebase Auth
+
         mAuth = FirebaseAuth.getInstance()
 
-        // Initialize views
+
+
         txtREmail = findViewById(R.id.txtREmail)
         txtRPassword = findViewById(R.id.txtRPassword)
         btnLogin = findViewById(R.id.btnLogin)
         txtNoAccount = findViewById(R.id.txtNoAccount)
         txtLoginSSo = findViewById(R.id.txtLoginSSo)
 
-        // Regular email/password login
+
+
         btnLogin.setOnClickListener {
             val email = txtREmail.text.toString().trim()
             val password = txtRPassword.text.toString().trim()
@@ -51,7 +53,7 @@ class Login : AppCompatActivity() {
                     if (task.isSuccessful && task.result?.signInMethods?.contains(GoogleAuthProvider.GOOGLE_SIGN_IN_METHOD) == true) {
                         Toast.makeText(this, "Please use Google Sign-In for this account", Toast.LENGTH_SHORT).show()
                     } else {
-                        // Proceed with normal login
+
                         mAuth.signInWithEmailAndPassword(email, password)
                             .addOnCompleteListener(this) { task ->
                                 if (task.isSuccessful) {
@@ -77,12 +79,12 @@ class Login : AppCompatActivity() {
 
             // Sign out from the previously selected account to force account selection
             googleSignInClient.signOut().addOnCompleteListener {
-                signInWithGoogle()  // This will trigger the Google Sign-In flow
+                signInWithGoogle()
             }
         }
 
 
-        // Handle "No account?" text click, redirect to registration page
+
         txtNoAccount.setOnClickListener {
             startActivity(Intent(this, Registration::class.java))
         }

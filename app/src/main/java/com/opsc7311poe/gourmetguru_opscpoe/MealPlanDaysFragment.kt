@@ -88,26 +88,25 @@ class MealPlanDaysFragment : Fragment() {
             })
     }
 
-    /**
-     * Helper function to retrieve the meal name and ingredients if they exist.
-     */
+
     private fun fetchMealWithIngredients(snapshot: DataSnapshot): String? {
         if (!snapshot.exists() || !snapshot.hasChildren()) {
             return null
         }
 
-        // Get the first child of the snapshot, which is the recipe name (e.g., "Coq Au Vin")
+
         val recipeSnapshot = snapshot.children.firstOrNull()
         if (recipeSnapshot != null && recipeSnapshot.key != null) {
             val recipeName = recipeSnapshot.key
             val ingredients = recipeSnapshot.child("ingredients").children.mapNotNull { it.getValue(String::class.java) }
 
-            // Optionally, display both recipe name and ingredients if needed
+
             return "$recipeName"
         }
         return null
     }
 
+    //OpenAI, 2024. ChatGPT. [online]. Available at: https://chat.openai.com [Accessed 24 September 2024].
     private fun navigateToSelectMealFragment(mealType: String) {
         val selectMealFragment = SelectMealFragment().apply {
             arguments = Bundle().apply {

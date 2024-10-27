@@ -112,6 +112,7 @@ class ShoppingFragment : Fragment() {
     }
 
 
+   // OpenAI, 2024. ChatGPT. [online]. Available at: https://chat.openai.com [Accessed 28 September 2024].
     private fun parseIngredient(ingredient: String): Pair<Int, String> {
         val parts = ingredient.split(" ", limit = 2)
         val name =
@@ -121,6 +122,7 @@ class ShoppingFragment : Fragment() {
     }
 
 
+    //OpenAI, 2024. ChatGPT. [online]. Available at: https://chat.openai.com [Accessed 28 September 2024].
     private fun groupIngredients(ingredients: List<String>): Map<String, Int> {
         val groupedIngredients = mutableMapOf<String, Int>()
 
