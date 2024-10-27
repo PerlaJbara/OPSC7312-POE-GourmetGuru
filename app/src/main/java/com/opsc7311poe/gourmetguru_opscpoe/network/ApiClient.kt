@@ -8,7 +8,9 @@ import retrofit2.http.Path
 import java.util.concurrent.TimeUnit
 
 object ApiClient {
-    private const val BASE_URL = "http://gourmet-guru-rest-api-hs.onrender.com/api/" //https://gourmet-guru-rest-api-hs.onrender.com/api/
+    //OpenAI, 2024. ChatGPT. [online]. Available at: https://chat.openai.com [Accessed 1 October 2024].
+    private const val BASE_URL = "http://gourmet-guru-rest-api-hs.onrender.com/api/"
+    //https://gourmet-guru-rest-api-hs.onrender.com/api/
 
     // Increase timeout settings for OkHttp client
     private val okHttpClient = OkHttpClient.Builder()

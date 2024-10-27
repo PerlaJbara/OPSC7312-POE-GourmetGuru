@@ -147,6 +147,7 @@ class TimerFragment : Fragment() {
 
 
     // Function to show the input dialog with TimePicker for hours and minutes, and a custom NumberPicker for seconds
+    //OpenAI, 2024. ChatGPT. [online]. Available at: https://chat.openai.com [Accessed 1 October 2024].
     private fun showTimeInputDialog() {
         var selectedHour = 0
         var selectedMinute = 0
@@ -171,6 +172,7 @@ class TimerFragment : Fragment() {
         // Show TimePickerDialog
         timePickerDialog.show()
     }
+
 
     // Function to show a custom NumberPicker for selecting seconds
     private fun showSecondsPickerDialog(onSecondSelected: (Int) -> Unit) {
@@ -317,6 +319,7 @@ class TimerFragment : Fragment() {
 
 
     // Create the notification channel if needed (for Android O+)
+    //OpenAI, 2024. ChatGPT. [online]. Available at: https://chat.openai.com [Accessed 1 October 2024].
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = "Timer Notifications"
@@ -347,8 +350,9 @@ class TimerFragment : Fragment() {
         }
     }
 
+
     // Method to send the notification
-    // Method to send the notification
+    //OpenAI, 2024. ChatGPT. [online]. Available at: https://chat.openai.com [Accessed 1 October 2024].
     private fun sendNotification() {
         // Check if notification permission is granted (for Android 13+)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
