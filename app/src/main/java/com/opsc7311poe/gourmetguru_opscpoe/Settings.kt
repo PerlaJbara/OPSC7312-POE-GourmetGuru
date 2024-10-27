@@ -119,6 +119,7 @@ class Settings : Fragment() {
         val isDarkModeOn = sharedPreferences.getBoolean("DarkMode", false)
         switchDarkMode.isChecked = isDarkModeOn
 
+       // OpenAI, 2024. ChatGPT. [online]. Available at: https://chat.openai.com [Accessed 1 October 2024].
         // Set up dark mode switch listener
         switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {

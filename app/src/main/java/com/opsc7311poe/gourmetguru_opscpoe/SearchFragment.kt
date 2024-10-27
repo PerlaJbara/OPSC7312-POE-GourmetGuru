@@ -115,6 +115,8 @@ class SearchFragment : Fragment() {
             })
     }
 
+
+    //OpenAI, 2024. ChatGPT. [online]. Available at: https://chat.openai.com [Accessed 1 October 2024].
     private fun onRecipeClicked(cuisine: String, recipeName: String) {
         // Create a new instance of ViewSelectedFragment
         val viewSelectedFragment = ViewSelectedFragment()

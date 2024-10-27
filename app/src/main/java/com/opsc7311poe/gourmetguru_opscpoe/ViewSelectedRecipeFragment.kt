@@ -44,6 +44,8 @@ class ViewSelectedRecipeFragment : Fragment() {
         // Retrieve recipeID from arguments
         recipeID = arguments?.getString("recipeID")
 
+
+       // OpenAI, 2024. ChatGPT. [online]. Available at: https://chat.openai.com [Accessed 1 October 2024].
         btnsavincol.setOnClickListener {
             // Check if recipeID is available before proceeding
             recipeID?.let { id ->

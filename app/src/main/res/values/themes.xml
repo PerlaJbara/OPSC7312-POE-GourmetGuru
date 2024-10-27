@@ -1,4 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Chatgpt used for gettling the frame frame work for light mode -->
+    <!-- OpenAI, 2024. ChatGPT. [online]. Available at: https://chat.openai.com [Accessed 1 October 2024]. -->
+
     <!-- Base application theme. -->
     <style name="Base.Theme.GourmetGuruOPSCPOE" parent="Theme.Material3.DayNight.NoActionBar">
         //Testing for light mode
