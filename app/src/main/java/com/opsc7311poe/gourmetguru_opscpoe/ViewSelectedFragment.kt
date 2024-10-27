@@ -2,7 +2,6 @@ package com.opsc7311poe.gourmetguru_opscpoe
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,7 +46,7 @@ class ViewSelectedFragment : Fragment() {
         if (cuisine != null && recipeName != null) {
             loadRecipe(cuisine!!, recipeName!!)
         } else {
-            Log.e("ViewSelectedFragment", "Cuisine or Recipe Name is null.")
+           //
         }
 
         btnBack = binding.btnBack // Use binding to get btnBack directly
@@ -111,14 +110,14 @@ class ViewSelectedFragment : Fragment() {
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
-                    Log.e("TAG", "Error fetching collections: ${databaseError.message}")
+
                     Toast.makeText(requireContext(), "Failed to load collections: ${databaseError.message}", Toast.LENGTH_SHORT).show()
                 }
             })
     }
 
     private fun saveRecipeToCollection(recipeName: String, selectedCollection: String) {
-        Log.d("AddRecipeToCollection", "Collection name received: $selectedCollection")
+
         val collectionPath = "Users/$userId/Collections"
         val capitalizedRecipeName = capitalizeWords(recipeName) // Capitalize each word before saving
 
@@ -229,13 +228,13 @@ class ViewSelectedFragment : Fragment() {
                             binding.tvSteps.text = steps.joinToString("\n")
                         }
                     } else {
-                        // Handle the case where the recipe doesn't exist
-                        Log.e("ViewSelectedFragment", "Recipe not found.")
+                // Toast.makeText(this, "Oh no! Recipe not found.", Toast.LENGTH_SHORT).show()
+
                     }
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
-                    Log.e("ViewSelectedFragment", "Database error: ${databaseError.message}")
+
                 }
             })
     }

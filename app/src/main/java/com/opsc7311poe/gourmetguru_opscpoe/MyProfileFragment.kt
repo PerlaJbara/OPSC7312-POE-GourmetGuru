@@ -21,7 +21,6 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.provider.MediaStore
-import android.util.Log
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
@@ -124,7 +123,7 @@ class MyProfileFragment : Fragment() {
 
         val orientation = exif?.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
 
-        Log.d("ImageOrientation", "Orientation: $orientation")
+
 
         val matrix = Matrix()
         when (orientation) {
@@ -210,7 +209,7 @@ class MyProfileFragment : Fragment() {
             val bitmap = BitmapFactory.decodeFile(file.absolutePath)
             profilePic.setImageBitmap(bitmap)
         } else {
-            Log.e("Load Image Failed", "Profile picture not found in internal storage")
+
         }
     }
 

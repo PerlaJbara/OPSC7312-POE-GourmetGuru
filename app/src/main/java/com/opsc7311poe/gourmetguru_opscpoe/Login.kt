@@ -3,7 +3,6 @@ package com.opsc7311poe.gourmetguru_opscpoe
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -112,7 +111,6 @@ class Login : AppCompatActivity() {
         } catch (e: ApiException) {
             val statusCode = e.statusCode
             val errorMessage = CommonStatusCodes.getStatusCodeString(statusCode)
-            Log.e("TAG", "Google sign-in failed: $errorMessage")
             Toast.makeText(this, "Google sign-in failed: $errorMessage", Toast.LENGTH_LONG).show()
         }
     }
@@ -143,7 +141,7 @@ class Login : AppCompatActivity() {
                     finish()
                 }
             } else {
-                Log.e("TAG", "signInWithCredential:failure", task.exception)
+
                 Toast.makeText(this, "SSO login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
             }
         }

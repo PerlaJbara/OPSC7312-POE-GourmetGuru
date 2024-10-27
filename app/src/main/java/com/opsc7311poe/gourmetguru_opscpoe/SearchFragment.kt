@@ -19,6 +19,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import com.opsc7311poe.gourmetguru_opscpoe.databinding.FragmentSearchBinding
 
+
 class SearchFragment : Fragment() {
 
     lateinit var binding: FragmentSearchBinding

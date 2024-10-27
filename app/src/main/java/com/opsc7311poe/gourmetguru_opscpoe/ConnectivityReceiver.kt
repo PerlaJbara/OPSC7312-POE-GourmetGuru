@@ -82,6 +82,7 @@ class ConnectivityReceiver : BroadcastReceiver() {
                             Toast.makeText(context, "An error occurred while adding a recipe:" + it.toString() , Toast.LENGTH_LONG).show()
                         }
                 }
+
             }
 
         }

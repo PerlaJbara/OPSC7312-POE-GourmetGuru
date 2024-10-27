@@ -2,7 +2,6 @@ package com.opsc7311poe.gourmetguru_opscpoe
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.HapticFeedbackConstants
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -100,7 +99,7 @@ class ViewCollectionFragment : Fragment() {
             //transferring collection info using a bundle
             val bundle = Bundle()
             bundle.putString("collectionID", collectionID)
-            Log.d("AddRecipeToCollection", "Collection ID sent: $collectionID")
+
             addRecToCollFrag.arguments = bundle
             //changing to recipe info fragment
             it.performHapticFeedback(HapticFeedbackConstants.CONFIRM)

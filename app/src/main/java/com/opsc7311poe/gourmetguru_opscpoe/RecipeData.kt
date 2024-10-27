@@ -13,6 +13,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Method
 
+
 @Entity(tableName = "recipes")
 data class RecipeData (
     @PrimaryKey(autoGenerate = true) val id: Int? = 0, //RoomDb autogenerates an id for saving offline

@@ -1,7 +1,6 @@
 package com.opsc7311poe.gourmetguru_opscpoe
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -76,20 +75,13 @@ class APICuisineRecipeDetailsFragment : Fragment() {
     private fun fetchRecipeDetails(cuisineName: String, recipeName: String) {
         lifecycleScope.launch {
             try {
-                // Log the request details
-                Log.d("RecipeDetails", "Fetching details for: $cuisineName - $recipeName")
 
                 val recipeDetails = apiService.getRecipeDetails(cuisineName, recipeName)
-
-                // Log the received recipe details
-                Log.d("RecipeDetails", "Fetched details: $recipeDetails")
-
                 // Check if duration is null or empty and log it
                 if (recipeDetails.Duration.isNullOrEmpty()) {
-                    Log.d("RecipeDuration", "No duration available for the recipe.")
                     recipeDurationTextView.text = "Duration not available"
                 } else {
-                    Log.d("RecipeDuration", "Recipe duration: ${recipeDetails.Duration}")
+
                     recipeDurationTextView.text = recipeDetails.Duration
                 }
 

@@ -2,7 +2,6 @@ package com.opsc7311poe.gourmetguru_opscpoe
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -55,7 +54,7 @@ class AddRecipeToCollectionFragment : Fragment() {
     }
 
     private fun replaceFragment(fragment: Fragment) {
-        Log.d("AddRecipeToCollectionFragment", "Replacing fragment: ${fragment::class.java.simpleName}")
+
         parentFragmentManager.beginTransaction()
             .replace(R.id.frame_container, fragment)
             .addToBackStack(null)
@@ -120,7 +119,7 @@ class AddRecipeToCollectionFragment : Fragment() {
                     // Iterate through the user's recipes
                     for (recipeSnapshot in dataSnapshot.children) {
                         val recipeName = recipeSnapshot.child("name").getValue(String::class.java)?.lowercase()?.trim() // Trim and convert to lowercase
-                        Log.d("RecipeSearch", "Recipe found: $recipeName") // Log retrieved recipe names
+
 
                         // Check if the recipe name contains the search query
                         if (recipeName?.contains(lowerCaseQuery) == true) {
@@ -129,7 +128,7 @@ class AddRecipeToCollectionFragment : Fragment() {
                             if (recipeSnapshot.key != null) {
                                 createRecipeTextView(recipeName, recipeSnapshot.key!!)
                             } else {
-                                Log.d("Debug", "Recipe snapshot key is null")
+
                             }
                         }
                     }
@@ -146,7 +145,7 @@ class AddRecipeToCollectionFragment : Fragment() {
     }
 
     private fun saveRecipeToCollection(recipeName: String) {
-        Log.d("AddRecipeToCollection", "Collection ID received: $collectionID")
+
         val collectionPath = "Users/$userId/Collections/$collectionID"
         val capitalizedRecipeName = capitalizeWords(recipeName) // Capitalize each word before saving
 
@@ -227,7 +226,7 @@ class AddRecipeToCollectionFragment : Fragment() {
                             if (recipeSnapshot.key != null) {
                                 createRecipeTextView(recipeSnapshot.key!!, recipeSnapshot.key!!)
                             } else {
-                                Log.d("Debug", "Recipe snapshot key is null")
+
                             }
                         }
                     } else {

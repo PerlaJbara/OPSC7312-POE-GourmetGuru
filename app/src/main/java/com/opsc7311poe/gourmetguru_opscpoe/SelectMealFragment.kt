@@ -2,7 +2,6 @@ package com.opsc7311poe.gourmetguru_opscpoe
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -67,7 +66,7 @@ class SelectMealFragment : Fragment() {
                     for (cuisineSnapshot in dataSnapshot.children) {
                         for (recipeSnapshot in cuisineSnapshot.child("recipes").children) {
                             val recipeName = recipeSnapshot.key?.lowercase()?.trim() // Get the recipe name
-                            Log.d("RecipeSearch", "Recipe found: $recipeName") // Log the found recipe
+
 
                             // Check if the recipe name matches the search query
                             if (recipeName?.contains(lowerCaseQuery) == true) {
@@ -78,11 +77,11 @@ class SelectMealFragment : Fragment() {
                                     it.getValue(String::class.java)
                                 }
 
-                                // Ensure the recipe name (key) is not null before passing it
+
                                 if (recipeName != null) {
                                     createRecipeTextView(recipeName, ingredientsList) // Pass recipe name and ingredients
                                 } else {
-                                    Log.d("Debug", "Recipe snapshot key is null")
+
                                 }
                             }
                         }
@@ -116,7 +115,7 @@ class SelectMealFragment : Fragment() {
                     for (recipeSnapshot in dataSnapshot.children) {
                         // Retrieve the recipe name directly from the snapshot
                         val recipeName = recipeSnapshot.child("name").getValue(String::class.java)?.lowercase()?.trim()
-                        Log.d("RecipeSearch", "Recipe found: $recipeName") // Log retrieved recipe names
+
 
                         // Check if the recipe name contains the search query
                         if (recipeName?.contains(lowerCaseQuery) == true) {
@@ -133,7 +132,7 @@ class SelectMealFragment : Fragment() {
                             if (recipeName.isNotEmpty()) {
                                 createRecipeTextView(recipeName, ingredientsList)
                             } else {
-                                Log.d("Debug", "Recipe snapshot name is empty or null")
+
                             }
                         }
                     }
@@ -245,7 +244,7 @@ class SelectMealFragment : Fragment() {
                                 // Create the recipe text view with the recipe name and ingredients
                                 createRecipeTextView(recipeName, ingredientsList)
                             } else {
-                                Log.d("Debug", "Recipe snapshot key is null")
+
                             }
                         }
                     } else {

@@ -7,5 +7,6 @@ data class Meal(
     var duration: String = "",
     var steps: List<String> = emptyList()
 ) {
+
     constructor() : this("", emptyList(), "", "", emptyList()) // Default constructor
 }

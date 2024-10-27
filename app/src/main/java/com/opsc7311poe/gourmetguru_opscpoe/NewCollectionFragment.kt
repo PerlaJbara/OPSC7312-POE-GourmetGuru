@@ -62,6 +62,7 @@ class NewCollectionFragment : Fragment() {
         }
 
 
+
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
         // Create a unique ID for the collection
         val collectionId = UUID.randomUUID().toString()

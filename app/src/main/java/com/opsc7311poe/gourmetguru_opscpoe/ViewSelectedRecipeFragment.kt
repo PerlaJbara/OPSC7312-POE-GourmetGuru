@@ -1,7 +1,6 @@
 package com.opsc7311poe.gourmetguru_opscpoe
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -111,7 +110,6 @@ class ViewSelectedRecipeFragment : Fragment() {
     }
 
     private fun replaceFragment(fragment: Fragment) {
-        Log.d("ServicesFragment", "Replacing fragment: ${fragment::class.java.simpleName}")
         parentFragmentManager.beginTransaction()
             .replace(R.id.frame_container, fragment)
             .addToBackStack(null)

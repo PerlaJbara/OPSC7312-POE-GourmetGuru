@@ -1,7 +1,6 @@
 package com.opsc7311poe.gourmetguru_opscpoe
 
 import android.os.Bundle
-import android.util.Log
 import android.view.HapticFeedbackConstants
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -90,7 +89,7 @@ class LebaneseFragment : Fragment() {
                     recipeAdapter.updateData(recipesWithImages)
                 }
             } catch (e: Exception) {
-                Log.e("LebaneseFragment", "Error fetching recipes", e)
+
             }
         }
     }
