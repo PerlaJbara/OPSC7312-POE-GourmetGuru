@@ -76,11 +76,11 @@
         <!-- Profile picture -->
         <ImageView
             android:id="@+id/imgpfp"
-            android:layout_width="149dp"
-            android:layout_height="117dp"
+            android:layout_width="111dp"
+            android:layout_height="192dp"
             android:layout_gravity="center"
-            android:src="@drawable/vectormyprofile"
-            android:layout_marginTop="16dp" />-->
+            android:layout_marginTop="16dp"
+            android:src="@drawable/vectormyprofile" />-->
 
         <TextView
             android:id="@+id/txtupdatepfp"

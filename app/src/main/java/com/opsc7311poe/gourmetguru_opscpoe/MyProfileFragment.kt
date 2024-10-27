@@ -28,6 +28,8 @@ import com.squareup.picasso.Picasso
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
+import android.media.ExifInterface
+import android.graphics.Matrix
 
 class MyProfileFragment : Fragment() {
 
@@ -108,14 +110,73 @@ class MyProfileFragment : Fragment() {
         startActivityForResult(Intent.createChooser(intent, "Choose image to upload"), PICK_IMAGE_REQUEST)
     }
 
+    // Function to adjust image orientation
+    // Function to adjust image orientation and flipping
+    private fun getCorrectlyOrientedAndFlippedBitmap(uri: Uri): Bitmap? {
+        val inputStream = requireActivity().contentResolver.openInputStream(uri)
+        val bitmap = BitmapFactory.decodeStream(inputStream) ?: return null
+        inputStream?.close()  // Close input stream after reading
+
+        // Open new input stream for Exif (needed for some devices)
+        val newInputStream = requireActivity().contentResolver.openInputStream(uri)
+        val exif = newInputStream?.let { ExifInterface(it) }
+        newInputStream?.close()
+
+        val orientation = exif?.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
+
+        Log.d("ImageOrientation", "Orientation: $orientation")
+
+        val matrix = Matrix()
+        when (orientation) {
+            ExifInterface.ORIENTATION_ROTATE_90 -> matrix.postRotate(90f)
+            ExifInterface.ORIENTATION_ROTATE_180 -> matrix.postRotate(180f)
+            ExifInterface.ORIENTATION_ROTATE_270 -> matrix.postRotate(270f)
+            ExifInterface.ORIENTATION_FLIP_HORIZONTAL -> matrix.postScale(-1f, 1f)
+            ExifInterface.ORIENTATION_FLIP_VERTICAL -> matrix.postScale(1f, -1f)
+            ExifInterface.ORIENTATION_TRANSPOSE -> {
+                matrix.postRotate(90f)
+                matrix.postScale(-1f, 1f)
+            }
+            ExifInterface.ORIENTATION_TRANSVERSE -> {
+                matrix.postRotate(270f)
+                matrix.postScale(-1f, 1f)
+            }
+        }
+
+        // Create a new bitmap with the applied matrix
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
+    }
+
+
+    // Function to rotate and flip the image
+    private fun rotateAndFlipImage(source: Bitmap, angle: Float, flipHorizontal: Boolean, flipVertical: Boolean): Bitmap {
+        val matrix = Matrix()
+        matrix.postRotate(angle)
+
+        // Flip horizontally if needed
+        if (flipHorizontal) {
+            matrix.postScale(-1f, 1f)
+        }
+        // Flip vertically if needed
+        if (flipVertical) {
+            matrix.postScale(1f, -1f)
+        }
+
+        return Bitmap.createBitmap(source, 0, 0, source.width, source.height, matrix, true)
+    }
+
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
             fileUri = data.data
             try {
-                val bitmap: Bitmap = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, fileUri)
-                profilePic.setImageBitmap(bitmap)
-                saveImageToInternalStorage(bitmap) // Save image to internal storage
+                // Get correctly oriented bitmap
+                val bitmap: Bitmap? = fileUri?.let { getCorrectlyOrientedAndFlippedBitmap(it) }
+                bitmap?.let {
+                    profilePic.setImageBitmap(it)
+                    saveImageToInternalStorage(it) // Save image to internal storage
+                }
             } catch (e: IOException) {
                 e.printStackTrace()
             }
