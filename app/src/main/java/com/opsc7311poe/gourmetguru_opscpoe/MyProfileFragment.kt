@@ -184,11 +184,16 @@ class MyProfileFragment : Fragment() {
     }
 
     private fun saveImageToInternalStorage(bitmap: Bitmap) {
-        // Get the directory for the app's private pictures directory
+        // Get the current user's unique ID
+        val userId = auth.currentUser?.uid ?: return
+
+        // Create a unique file name based on the user ID
+        val fileName = "${auth.currentUser?.uid}_profile_picture.jpg"
         val file = File(requireContext().filesDir, fileName)
+
         try {
             FileOutputStream(file).use { fos ->
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos) // Save bitmap as JPEG
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos)
                 Toast.makeText(requireContext(), "Image saved successfully", Toast.LENGTH_SHORT).show()
             }
         } catch (e: IOException) {
@@ -197,8 +202,10 @@ class MyProfileFragment : Fragment() {
         }
     }
     private fun loadProfilePicture() {
-        // Load the saved profile picture from internal storage
+        val userId = auth.currentUser?.uid ?: return
+        val fileName = "${auth.currentUser?.uid}_profile_picture.jpg"
         val file = File(requireContext().filesDir, fileName)
+
         if (file.exists()) {
             val bitmap = BitmapFactory.decodeFile(file.absolutePath)
             profilePic.setImageBitmap(bitmap)
