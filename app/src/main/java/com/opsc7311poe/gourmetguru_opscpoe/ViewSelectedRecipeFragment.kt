@@ -25,7 +25,7 @@ class ViewSelectedRecipeFragment : Fragment() {
     private lateinit var fetchedRecipe: RecipeData
 
     private lateinit var btnsavincol: ImageView
-    private var recipeID: String? = null // Declare recipeID here
+    private var recipeID: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

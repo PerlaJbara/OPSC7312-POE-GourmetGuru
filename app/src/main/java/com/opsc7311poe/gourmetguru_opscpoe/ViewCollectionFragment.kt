@@ -61,6 +61,7 @@ class ViewCollectionFragment : Fragment() {
 
                             for (recipeName in recipeList!!) {
 
+                                //OpenAI, 2024. ChatGPT. [online]. Available at: https://chat.openai.com [Accessed 26 October 2024].
                                 // Create a TextView for each collection
                                 val recipeNameTextView = TextView(requireContext()).apply {
                                     text = recipeName

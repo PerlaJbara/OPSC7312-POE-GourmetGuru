@@ -78,6 +78,7 @@ class ViewCollectionsFragment : Fragment() {
                     for (collectionSnapshot in dataSnapshot.children) {
                         val collectionName = collectionSnapshot.child("name").value as String
 
+                        //OpenAI, 2024. ChatGPT. [online]. Available at: https://chat.openai.com [Accessed 26 October 2024].
                         // Create a TextView for each collection
                         val collectionTextView = TextView(requireContext()).apply {
                             text = collectionName

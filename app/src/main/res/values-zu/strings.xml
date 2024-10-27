@@ -1,4 +1,7 @@
 <resources>
+
+    <!--OpenAI, 2024. ChatGPT. [online]. Available at: https://chat.openai.com [Accessed  26 October 2024].-->
+
     <!--for change language page-->
     <string name="changeLangFragHeading">Shintsha Ulimi</string>
     <string name="txtSelect_a_language">Khetha Ulimi</string>

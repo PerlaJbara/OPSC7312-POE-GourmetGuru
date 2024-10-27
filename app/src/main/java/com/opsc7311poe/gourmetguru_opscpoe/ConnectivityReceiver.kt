@@ -16,6 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.logging.Handler
 
+//OpenAI, 2024. ChatGPT. [online]. Available at: https://chat.openai.com [Accessed 26 October 2024].
 class ConnectivityReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent?) {
         if (isOnline(context)) {

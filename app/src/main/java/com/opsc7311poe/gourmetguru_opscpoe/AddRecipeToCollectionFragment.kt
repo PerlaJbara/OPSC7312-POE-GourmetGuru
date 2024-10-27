@@ -26,8 +26,6 @@ class AddRecipeToCollectionFragment : Fragment() {
     private lateinit var collectionID: String
 
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -168,6 +166,7 @@ class AddRecipeToCollectionFragment : Fragment() {
                         }
                     }
 
+                    //OpenAI, 2024. ChatGPT. [online]. Available at: https://chat.openai.com [Accessed 26 October 2024].
                     // Check if the recipe is already in the list before adding
                     if (!fetchedRecipeList.contains(capitalizedRecipeName)) {
                         fetchedRecipeList.add(capitalizedRecipeName)

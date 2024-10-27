@@ -47,6 +47,7 @@ class ChangeLanguageFragment : Fragment() {
         btnSave.setOnClickListener(){
             val selectedLang = spinLang.selectedItem
 
+            //OpenAI, 2024. ChatGPT. [online]. Available at: https://chat.openai.com [Accessed 26 October 2024].
             //changing app language into selected language
             when (selectedLang) {
                 getString(R.string.spinEnglishOption) -> {
@@ -68,6 +69,7 @@ class ChangeLanguageFragment : Fragment() {
         return view
     }
 
+    //OpenAI, 2024. ChatGPT. [online]. Available at: https://chat.openai.com [Accessed 26 October 2024].
     fun setAppLang(langCode: String) {
         val locale = Locale(langCode)
         Locale.setDefault(locale)
