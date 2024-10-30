@@ -23,7 +23,6 @@ import com.opsc7311poe.gourmetguru_opscpoe.databinding.FragmentSearchBinding
 class SearchFragment : Fragment() {
 
     lateinit var binding: FragmentSearchBinding
-    private lateinit var btnBack: ImageView
     private var mealType: String? = null
 
     override fun onCreateView(
@@ -35,12 +34,6 @@ class SearchFragment : Fragment() {
 
         mealType = arguments?.getString("mealType")
 
-        // Back button action
-        btnBack = binding.btnBack
-        btnBack.setOnClickListener {
-            it.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-            parentFragmentManager.popBackStack()
-        }
 
         // Search button action
         binding.btnSearch.setOnClickListener {

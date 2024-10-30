@@ -21,7 +21,9 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.getValue
 
 class ViewCollectionFragment : Fragment() {
+
     private lateinit var txtName: TextView
+    private lateinit var btnBack: ImageView
     private lateinit var btnAdd: Button
     private lateinit var collectionID: String
     private lateinit var linlayCollectionRecipes: LinearLayout
@@ -33,6 +35,11 @@ class ViewCollectionFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_view_collection, container, false)
 
+        btnBack = view.findViewById(R.id.btnBack)
+
+        btnBack.setOnClickListener(){
+            replaceFragment(ViewCollectionsFragment())
+        }
         //fetching collection info and displaying
         var userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
         var database = FirebaseDatabase.getInstance().reference
