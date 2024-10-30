@@ -55,6 +55,14 @@
           }
         },
         {
+          "client_id": "381636906301-rmh5kk0b9f0j61p9m0rahbjecgf54g5h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.opsc7311poe.gourmetguru_opscpoe",
+            "certificate_hash": "ce5f74ce8b22d5c8892d3eae69b2f94a50682500"
+          }
+        },
+        {
           "client_id": "381636906301-t3g7rf6t3paok4l02mdoosehq6tqo6g8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
